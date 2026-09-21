@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================
+         SECTION 1 - DOCUMENT SETUP
+    =========================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="TransL - A social platform where content is translated before reaching your browser.">
+
+    <title>TransL</title>
+
+
+    <!-- ==========================================
+         SECTION 2 - STYLESHEETS
+    =========================================== -->
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Feed CSS -->
+    <link rel="stylesheet" href="css/feed.css">
+
+    <!-- Profile CSS -->
+    <link rel="stylesheet" href="css/profile.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+
+<body>
+
+    <!-- ==========================================
+         SECTION 3 - TRANSL APPLICATION
+    =========================================== -->
+
+    <div id="transl-app">
+
+
+        <!-- ======================================
+             SECTION 4 - TOP NAVIGATION
+        ======================================= -->
+
+        <header id="top-header">
+
+            <div class="header-container">
+
+
+                <!-- BRAND -->
+
+                <div id="transl-brand">
+
+                    <a href="#" class="brand-name" aria-label="TransL home">
+                        TransL
+                    </a>
+
+                </div>
+
+
+                <!-- SEARCH -->
+
+                <div class="header-search">
+
+                    <label for="global-search" class="sr-only">
+                        Search TransL
+                    </label>
+
+                    <input type="search" id="global-search" class="search-input" placeholder="Search TransL"
+                        autocomplete="off">
+
+                </div>
+
+
+                <!-- TOP NAVIGATION -->
+
+                <nav id="main-navigation" aria-label="Main navigation">
+
+                    <a href="#" class="nav-item active" data-page="home">
+                        <span class="nav-icon">
+                            Home
+                        </span>
+                    </a>
+
+
+                    <a href="#" class="nav-item" data-page="messages">
+                        <span class="nav-icon">
+                            Messages
+                        </span>
+                    </a>
+
+
+                    <a href="#" class="nav-item" data-page="notifications">
+                        <span class="nav-icon">
+                            Notifications
+                        </span>
+                    </a>
+
+
+                    <a href="#" class="nav-item" data-page="profile">
+                        <span class="nav-icon">
+                            Profile
+                        </span>
+                    </a>
+
+                </nav>
+
+            </div>
+
+        </header>
+
+
+        <!-- ======================================
+             SECTION 5 - MAIN CONTENT
+        ======================================= -->
+
+        <main id="main-content">
+
+
+            <!-- ==================================
+                 SECTION 5A - SOCIAL LAYOUT
+            =================================== -->
+
+            <div id="social-layout">
+
+
+                <!-- ==================================
+                     SECTION 5B - LEFT SIDEBAR
+                =================================== -->
+
+                <aside id="left-sidebar">
+
+
+                    <!-- USER PROFILE SUMMARY -->
+
+                    <div class="sidebar-profile">
+
+                        <div class="sidebar-profile-header">
+
+
+                            <!-- USER AVATAR -->
+
+                            <div class="user-avatar" aria-hidden="true">
+                                T
+                            </div>
+
+
+                            <!-- USER INFORMATION -->
+
+                            <div class="sidebar-profile-info">
+
+                                <strong>
+                                    TransL User
+                                </strong>
+
+                                <span>
+                                    View profile
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SIDEBAR NAVIGATION -->
+
+                    <nav class="sidebar-navigation" aria-label="Sidebar navigation">
+
+
+                        <!-- HOME -->
+
+                        <a href="#" class="sidebar-item active" data-page="home">
+
+                            <span class="sidebar-icon" aria-hidden="true">
+                                H
+                            </span>
+
+                            <span>
+                                Home
+                            </span>
+
+                        </a>
+
+
+                        <!-- PROFILE -->
+
+                        <a href="#" class="sidebar-item" data-page="profile">
+
+                            <span class="sidebar-icon" aria-hidden="true">
+                                P
+                            </span>
+
+                            <span>
+                                Profile
+                            </span>
+
+                        </a>
+
+
+                        <!-- FRIENDS -->
+
+                        <a href="#" class="sidebar-item" data-page="friends">
+
+                            <span class="sidebar-icon" aria-hidden="true">
+                                F
+                            </span>
+
+                            <span>
+                                Friends
+                            </span>
+
+                        </a>
+
+
+                        <!-- MESSAGES -->
+
+                        <a href="#" class="sidebar-item" data-page="messages">
+
+                            <span class="sidebar-icon" aria-hidden="true">
+                                M
+                            </span>
+
+                            <span>
+                                Messages
+                            </span>
+
+                        </a>
+
+
+                        <!-- NOTIFICATIONS -->
+
+                        <a href="#" class="sidebar-item" data-page="notifications">
+
+                            <span class="sidebar-icon" aria-hidden="true">
+                                N
+                            </span>
+
+                            <span>
+                                Notifications
+                            </span>
+
+                        </a>
+
+
+                        <!-- GROUPS -->
+
+                        <a href="#" class="sidebar-item" data-page="groups">
+
+                            <span class="sidebar-icon" aria-hidden="true">
+                                G
+                            </span>
+
+                            <span>
+                                Groups
+                            </span>
+
+                        </a>
+
+
+                        <!-- SAVED -->
+
+                        <a href="#" class="sidebar-item" data-page="saved">
+
+                            <span class="sidebar-icon" aria-hidden="true">
+                                S
+                            </span>
+
+                            <span>
+                                Saved
+                            </span>
+
+                        </a>
+
+                    </nav>
+
+
+                    <!-- SIDEBAR DIVIDER -->
+
+                    <div class="sidebar-divider"></div>
+
+
+                    <!-- SETTINGS -->
+
+                    <a href="#" class="sidebar-item" data-page="settings">
+
+                        <span class="sidebar-icon" aria-hidden="true">
+                            *
+                        </span>
+
+                        <span>
+                            Settings
+                        </span>
+
+                    </a>
+
+                </aside>
+
+
+                <!-- ==================================
+                     SECTION 5C - MAIN SOCIAL FEED
+                =================================== -->
+
+                <section id="social-dashboard" aria-label="TransL dashboard">
+
+
+                    <!-- ==================================
+                         SECTION 5C-1 - CREATE POST
+                    =================================== -->
+
+                    <section id="create-post-section" class="dashboard-card">
+
+                        <div class="create-post-header">
+
+
+                            <!-- USER AVATAR -->
+
+                            <div class="user-avatar" aria-hidden="true">
+                                T
+                            </div>
+
+
+                            <!-- CREATE POST BUTTON -->
+
+                            <button type="button" id="create-post-button" class="create-post-button">
+                                Create content
+                            </button>
+
+                        </div>
+                        <!-- ==========================================
+                             SECTION 5C - POST COMPOSER
+                        ========================================== -->
+
+                        <div id="post-composer" class="post-composer" hidden>
+
+                            <!-- COMPOSER HEADER -->
+                            <div class="composer-header">
+
+                                <strong>Create Post</strong>
+
+                                <button type="button" id="close-composer" class="close-composer"
+                                    aria-label="Close post composer">
+                                    X
+                                </button>
+
+                            </div>
+
+                            <!-- COMPOSER USER -->
+                            <div class="composer-user">
+
+                                <div class="user-avatar" id="composer-user-avatar" aria-hidden="true">
+                                    T
+                                </div>
+
+                                <div>
+                                    <strong id="composer-user-name">
+                                        TransL User
+                                    </strong>
+
+                                    <span>Public</span>
+                                </div>
+
+                            </div>
+
+
+                            <!-- POST CONTENT -->
+                            <textarea id="post-content" class="post-content" placeholder="Create content"
+                                maxlength="5000"></textarea>
+
+
+                            <!-- COMPOSER FOOTER -->
+                            <div class="composer-footer">
+
+                                <span id="post-character-count" class="post-character-count">
+                                    0 / 5000
+                                </span>
+
+                                <button type="button" id="publish-post" class="publish-post" disabled>
+                                    Post
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <!-- ==========================================
+                             SECTION 5E - PHOTO INPUT
+                        ========================================== -->
+
+                        <input type="file" id="photo-input" accept="image/*" hidden>
+
+                        <div id="photo-preview" class="photo-preview" hidden>
+
+                            <img id="photo-preview-image" src="" alt="Selected photo">
+
+                            <button type="button" id="remove-photo" class="remove-photo">
+                                Remove photo
+                            </button>
+
+                        </div>
+
+                        <!-- ==========================================
+                             SECTION 5F - VIDEO INPUT
+                        ========================================== -->
+
+                        <input type="file" id="video-input" accept="video/*" hidden>
+
+                        <div id="video-preview" class="video-preview" hidden>
+
+                            <video id="video-preview-player" controls>
+                            </video>
+
+                            <button type="button" id="remove-video" class="remove-video">
+                                Remove video
+                            </button>
+
+                        </div>
+
+                        <!-- ==========================================
+                             SECTION 5G - FEELING / ACTIVITY
+                        ========================================== -->
+
+                        <div id="feeling-selector" class="feeling-selector" hidden>
+
+                            <div class="feeling-selector-header">
+                                <strong>How are you feeling?</strong>
+
+                                <button type="button" id="close-feeling-selector" class="close-feeling-selector"
+                                    aria-label="Close feeling selector">
+                                    X
+                                </button>
+                            </div>
+
+
+                            <div class="feeling-options">
+
+                                <button type="button" class="feeling-option" data-feeling="Happy">
+                                    ðŸ˜Š Happy
+                                </button>
+
+                                <button type="button" class="feeling-option" data-feeling="Excited">
+                                    ðŸ˜Ž Excited
+                                </button>
+
+                                <button type="button" class="feeling-option" data-feeling="Loved">
+                                    â¤ï¸ Loved
+                                </button>
+
+                                <button type="button" class="feeling-option" data-feeling="Sad">
+                                    ðŸ˜¢ Sad
+                                </button>
+
+                                <button type="button" class="feeling-option" data-feeling="Angry">
+                                    ðŸ˜¡ Angry
+                                </button>
+
+                                <button type="button" class="feeling-option" data-feeling="Tired">
+                                    ðŸ˜´ Tired
+                                </button>
+
+                                <button type="button" class="feeling-option" data-feeling="Thinking">
+                                    ðŸ¤” Thinking
+                                </button>
+
+                                <button type="button" class="feeling-option" data-feeling="Celebrating">
+                                    ðŸŽ‰ Celebrating
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SELECTED FEELING -->
+
+                        <div id="selected-feeling" class="selected-feeling" hidden>
+
+                            <span id="selected-feeling-text"></span>
+
+                            <button type="button" id="remove-feeling" class="remove-feeling">
+                                Remove
+                            </button>
+
+                        </div>
+
+                        <!-- ==========================================
+                         SECTION 5D - POST ACTIONS
+                    ========================================== -->
+
+                        <div class="create-post-actions">
+
+                            <button type="button" class="post-action" data-action="photo">
+                                Photo
+                            </button>
+
+                            <button type="button" class="post-action" data-action="video">
+                                Video
+                            </button>
+
+                            <button type="button" class="post-action" data-action="feeling">
+                                Feeling
+                            </button>
+
+                        </div>
+
+                    </section>
+
+                    <!-- ==========================================
+                        TRANSL FEED
+                    ========================================== -->
+
+                    <div id="feed-container" class="feed-container" aria-live="polite">
+
+                    </div>
+
+                </section>
+
+                <!-- ==================================
+                     SECTION 5D - FRIENDS PAGE
+                =================================== -->
+
+                <section id="transl-friends-page" class="transl-page" data-page="friends" hidden
+                    aria-label="TransL friends">
+
+                    <div id="transl-friends-content"></div>
+
+                </section>
+
+
+
+
+                <!-- ==================================
+                     SECTION 5D - RIGHT SIDEBAR
+                =================================== -->
+
+                <aside id="right-sidebar">
+
+                    <!-- Reserved for future content -->
+
+                </aside>
+
+            </div>
+
+        </main>
+
+
+        <!-- ======================================
+             SECTION 6 - FOOTER
+        ======================================= -->
+
+        <footer id="site-footer">
+
+            <p>
+                2026 TransL
+            </p>
+
+        </footer>
+
+
+    </div>
+
+
+    <!-- ==========================================
+         SECTION 7 - JAVASCRIPT
+    =========================================== -->
+
+    <script src="js/language.js"></script>
+    <script src="js/language-metadata.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/friends.js"></script>
+    <script src="js/messages.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/Group.js"></script>
+    <script src="js/saved.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
+
+
+
