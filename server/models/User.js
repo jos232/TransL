@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 /* ==========================================
    TRANSL
@@ -146,7 +146,7 @@ const UserSchema = new mongoose.Schema(
         bio: {
             type: String,
             default: "",
-            maxlength: 500
+            maxlength: 2000
         },
 
         /* ==================================

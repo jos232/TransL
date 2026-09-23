@@ -291,9 +291,15 @@ a {
 
 #main-content {
     width: 100%;
-    min-height: calc(100vh - 58px);
+    height: calc(100vh - 58px);
+    min-height: 0;
 
     padding: 20px 16px 40px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    box-sizing: border-box;
 }
 
 #application-content {
@@ -327,6 +333,10 @@ a {
 ========================================== */
 
 #left-sidebar {
+/* MOBILE MORE MENU - HIDDEN ON DESKTOP */
+.mobile-more-menu {
+    display: none;
+}
     position: sticky;
     top: 88px;
 
@@ -726,6 +736,62 @@ a {
     }
 
     #main-navigation {
+        display: none;
+    }
+
+    /* MOBILE MORE MENU */
+
+    .mobile-more-menu {
+        display: block;
+        position: relative;
+        margin-left: auto;
+        z-index: 200;
+    }
+
+    .mobile-more-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 26px;
+        line-height: 1;
+        list-style: none;
+        user-select: none;
+    }
+
+    .mobile-more-button::-webkit-details-marker {
+        display: none;
+    }
+
+    .mobile-more-dropdown {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        min-width: 170px;
+        padding: 6px;
+        border-radius: 10px;
+        background: var(--card-background, #ffffff);
+        border: 1px solid var(--border-color, #e5e7eb);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        z-index: 300;
+    }
+
+    .mobile-more-item {
+        display: block;
+        padding: 11px 13px;
+        border-radius: 7px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .mobile-more-item:hover {
+        background: rgba(128, 128, 128, 0.12);
+    }
+
+    #left-sidebar {
         display: none;
     }
 
@@ -4387,7 +4453,7 @@ a {
 }
 
 /* ==========================================
-   TRANSL MESSAGES — SOCIAL CHAT POLISH
+   TRANSL MESSAGES ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â SOCIAL CHAT POLISH
 ========================================== */
 
 .transl-messages-page {
@@ -6828,7 +6894,7 @@ a {
 
 /* ==========================================
    TRANSL
-   MESSAGES — GROUP THEME
+   MESSAGES ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â GROUP THEME
    CHARCOAL + GOLD + LIGHT RED
 ========================================== */
 
@@ -7311,7 +7377,7 @@ a {
 
 /* ==========================================
    TRANSL
-   FRIENDS — GROUP THEME
+   FRIENDS ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â GROUP THEME
    CHARCOAL + GOLD + LIGHT RED
 ========================================== */
 
@@ -7710,7 +7776,7 @@ a {
 
 /* ==========================================
    TRANSL
-   PROFILE — GROUP THEME
+   PROFILE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â GROUP THEME
    CHARCOAL + GOLD + LIGHT RED
    WHITE TEXT
 ========================================== */
@@ -7941,7 +8007,7 @@ a {
 }
 
 /* ==========================================
-   PROFILE — MOBILE
+   PROFILE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â MOBILE
 ========================================== */
 
 @media (max-width: 700px) {
@@ -7987,7 +8053,7 @@ a {
 
 /* ==========================================
    TRANSL
-   HOME FEED — GOLD + LIGHT RED + GREY
+   HOME FEED ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â GOLD + LIGHT RED + GREY
 ========================================== */
 
 #social-dashboard {
@@ -8115,7 +8181,7 @@ a {
 }
 
 /* ==========================================
-   LIKE — RED
+   LIKE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â RED
 ========================================== */
 
 #social-dashboard .feed-post-action.like-post.liked {
@@ -8130,7 +8196,7 @@ a {
 }
 
 /* ==========================================
-   COMMENT — BLUE
+   COMMENT ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â BLUE
 ========================================== */
 
 #social-dashboard .feed-post-action.comment-post.active {
@@ -8145,7 +8211,7 @@ a {
 }
 
 /* ==========================================
-   SHARE — PINK
+   SHARE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â PINK
 ========================================== */
 
 #social-dashboard .feed-post-action.share-post.active {
@@ -8160,7 +8226,7 @@ a {
 }
 
 /* ==========================================
-   FAVORITE — GOLD
+   FAVORITE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â GOLD
 ========================================== */
 
 #social-dashboard .feed-post-action.favorite-post.favorited {
@@ -8175,7 +8241,7 @@ a {
 }
 
 /* ==========================================
-   DOWNLOAD — MAROON
+   DOWNLOAD ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â MAROON
 ========================================== */
 
 #social-dashboard .feed-post-action.download-post.active {
@@ -8439,7 +8505,7 @@ a {
 }
 
 /* ==========================================
-   ACTIVE LIKE — RED
+   ACTIVE LIKE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â RED
 ========================================== */
 
 #social-dashboard .feed-post-action.like-post.liked {
@@ -8454,7 +8520,7 @@ a {
 }
 
 /* ==========================================
-   ACTIVE COMMENT — BLUE
+   ACTIVE COMMENT ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â BLUE
 ========================================== */
 
 #social-dashboard .feed-post-action.comment-post.active {
@@ -8469,7 +8535,7 @@ a {
 }
 
 /* ==========================================
-   ACTIVE SHARE — PINK
+   ACTIVE SHARE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â PINK
 ========================================== */
 
 #social-dashboard .feed-post-action.share-post.active {
@@ -8484,7 +8550,7 @@ a {
 }
 
 /* ==========================================
-   ACTIVE FAVORITE — GOLD
+   ACTIVE FAVORITE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â GOLD
 ========================================== */
 
 #social-dashboard .feed-post-action.favorite-post.favorited {
@@ -8499,7 +8565,7 @@ a {
 }
 
 /* ==========================================
-   ACTIVE DOWNLOAD — MAROON
+   ACTIVE DOWNLOAD ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â MAROON
 ========================================== */
 
 #social-dashboard .feed-post-action.download-post.active {
@@ -8514,7 +8580,7 @@ a {
 }
 
 /* ==========================================
-   COMMENT PANEL — GREY
+   COMMENT PANEL ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â GREY
 ========================================== */
 
 #social-dashboard .post-comment-panel {
@@ -8658,7 +8724,7 @@ a {
 }
 
 .transl-settings-item::after {
-    content: "›";
+    content: "\203A";
     margin-left: auto;
     color: #8a8d91;
     font-size: 25px;
@@ -13130,4 +13196,5 @@ html[data-theme="dark"] .post-comment-emoji-option {
     outline-offset: 2px;
     border-radius: 3px;
 }
+
 

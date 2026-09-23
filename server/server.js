@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 /* ==========================================
    TRANSL
@@ -109,7 +109,7 @@ const photoUpload =
 
         limits: {
             fileSize:
-                10 * 1024 * 1024
+                1024 * 1024 * 1024
         }
 
     });
@@ -177,7 +177,7 @@ const videoUpload =
 
         limits: {
             fileSize:
-                10 * 1024 * 1024
+                1024 * 1024 * 1024
         }
 
     });
@@ -212,14 +212,14 @@ fileFilter: (
 
 app.use(
     express.json({
-        limit: "10mb"
+        limit: "1gb"
     })
 );
 
 app.use(
     express.urlencoded({
         extended: true,
-        limit: "10mb"
+        limit: "1gb"
     })
 );
 
@@ -1298,14 +1298,14 @@ app.put(
             }
 
 
-            if (cleanBio.length > 500) {
+            if (cleanBio.length > 2000) {
 
                 return res.status(400).json({
 
                     success: false,
 
                     message:
-                        "Bio cannot exceed 500 characters."
+                        "Bio cannot exceed 2000 characters."
 
                 });
 
@@ -5582,6 +5582,8 @@ async function startServer() {
 }
 
 startServer();
+
+
 
 
 

@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 /* ==========================================
    TRANSL THEME INITIALIZATION
@@ -612,8 +612,23 @@ function initializeTransLNavigation() {
 
                 if (pageName === "home") {
 
-                    return;
+                    const mainContent =
+                        document.getElementById(
+                            "main-content"
+                        );
 
+                    if (mainContent) {
+                        mainContent.scrollTop = 0;
+                    }
+
+                    if (
+                        typeof loadTransLPosts ===
+                        "function"
+                    ) {
+                        loadTransLPosts();
+                    }
+
+                    return;
                 }
 
 
@@ -980,7 +995,7 @@ function initializeTransLNavigation() {
                                             class="transl-settings-icon"
                                             aria-hidden="true"
                                         >
-                                            \u25D0</span>
+                                            ◐</span>
 
                                         <span class="transl-settings-content">
 
@@ -1017,7 +1032,7 @@ function initializeTransLNavigation() {
                                             class="transl-settings-icon"
                                             aria-hidden="true"
                                         >
-                                            \u21AA</span>
+                                            ↪</span>
 
                                         <span class="transl-settings-content">
 
@@ -3460,11 +3475,11 @@ function initializePostComposer() {
 
                 if (
                     file.size >
-                    10 * 1024 * 1024
+                    1024 * 1024 * 1024
                 ) {
 
                     alert(
-                        "Photo must be 10 MB or smaller."
+                        "Photo must be 1 GB or smaller."
                     );
 
                     photoInput.value =
@@ -3593,8 +3608,8 @@ function initializePostComposer() {
                     return;
                 }
 
-                if (file.size > 10 * 1024 * 1024) {
-                    alert("Video must be 10 MB or smaller.");
+                if (file.size > 1024 * 1024 * 1024) {
+                    alert("Video must be 1 GB or smaller.");
                     videoInput.value = "";
                     selectedVideo = null;
                     videoPreview.hidden = true;
@@ -6325,3 +6340,7 @@ async function toggleTransLSharePanel(article, postId) {
     searchInput.focus();
 
 }
+
+
+
+
