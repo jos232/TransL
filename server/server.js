@@ -442,6 +442,17 @@ app.post(
 
                 }
 
+                if (req.file) {
+                    console.log(
+                        "TransL upload physical file:",
+                        req.file.path
+                    );
+                    console.log(
+                        "TransL upload file exists:",
+                        require("fs").existsSync(req.file.path)
+                    );
+                }
+
                 if (!req.file) {
 
                     return res.status(400).json({
@@ -505,6 +516,17 @@ app.post(
 
                     });
 
+                }
+
+                if (req.file) {
+                    console.log(
+                        "TransL upload physical file:",
+                        req.file.path
+                    );
+                    console.log(
+                        "TransL upload file exists:",
+                        require("fs").existsSync(req.file.path)
+                    );
                 }
 
                 if (!req.file) {
@@ -5037,6 +5059,64 @@ app.get(
 
 
 /* ==========================================
+   GET POST LIKES
+========================================== */
+
+app.get(
+    "/api/posts/:postId/likes",
+    requireAuth,
+    async (req, res) => {
+
+        try {
+
+            const post =
+                await Post.findById(
+                    req.params.postId
+                )
+                    .populate(
+                        "likes",
+                        "_id name username avatar"
+                    );
+
+            if (!post) {
+
+                return res.status(404).json({
+                    success: false,
+                    message:
+                        "Post not found."
+                });
+
+            }
+
+            return res.json({
+                success: true,
+                likes: post.likes || [],
+                likeCount:
+                    post.likes
+                        ? post.likes.length
+                        : 0
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Get post likes error:",
+                error
+            );
+
+            return res.status(500).json({
+                success: false,
+                message:
+                    "Unable to load post likes."
+            });
+
+        }
+
+    }
+);
+
+
+/* ==========================================
    LIKE / UNLIKE POST
 ========================================== */
 
@@ -5127,9 +5207,77 @@ app.post(
 
 
 /* ==========================================
-   ADD COMMENT TO POST
+   GET POST COMMENTS
 ========================================== */
 
+app.get(
+    "/api/posts/:postId/comments",
+    requireAuth,
+    async (req, res) => {
+
+        try {
+
+            const post =
+                await Post.findById(
+                    req.params.postId
+                )
+                    .populate(
+                        "comments.author",
+                        "_id name username avatar"
+                    );
+
+            if (!post) {
+
+                return res.status(404).json({
+
+                    success: false,
+
+                    message:
+                        "Post not found."
+
+                });
+
+            }
+
+            return res.json({
+
+                success: true,
+
+                comments:
+                    post.comments || [],
+
+                commentCount:
+                    post.comments
+                        ? post.comments.length
+                        : 0
+
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Get post comments error:",
+                error
+            );
+
+            return res.status(500).json({
+
+                success: false,
+
+                message:
+                    "Unable to load post comments."
+
+            });
+
+        }
+
+    }
+);
+
+
+/* ==========================================
+   ADD COMMENT TO POST
+========================================== */
 app.post(
     "/api/posts/:postId/comment",
     requireAuth,

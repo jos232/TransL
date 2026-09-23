@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,6 +14,12 @@
     <meta name="description"
         content="TransL - A social platform where content is translated before reaching your browser.">
 
+    <meta name="theme-color" content="#00C853">
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" href="/assets/transl-icon-192.png">
+
+    <link rel="apple-touch-icon" href="/assets/transl-icon-192.png">
     <title>TransL</title>
 
 
@@ -443,35 +449,35 @@
                             <div class="feeling-options">
 
                                 <button type="button" class="feeling-option" data-feeling="Happy">
-                                    ðŸ˜Š Happy
+                                    &#x1F60A; Happy
                                 </button>
 
                                 <button type="button" class="feeling-option" data-feeling="Excited">
-                                    ðŸ˜Ž Excited
+                                    &#x1F929; Excited
                                 </button>
 
                                 <button type="button" class="feeling-option" data-feeling="Loved">
-                                    â¤ï¸ Loved
+                                    &#x2764;&#xFE0F; Loved
                                 </button>
 
                                 <button type="button" class="feeling-option" data-feeling="Sad">
-                                    ðŸ˜¢ Sad
+                                    &#x1F622; Sad
                                 </button>
 
                                 <button type="button" class="feeling-option" data-feeling="Angry">
-                                    ðŸ˜¡ Angry
+                                    &#x1F620; Angry
                                 </button>
 
                                 <button type="button" class="feeling-option" data-feeling="Tired">
-                                    ðŸ˜´ Tired
+                                    &#x1F634; Tired
                                 </button>
 
                                 <button type="button" class="feeling-option" data-feeling="Thinking">
-                                    ðŸ¤” Thinking
+                                    &#x1F914; Thinking
                                 </button>
 
                                 <button type="button" class="feeling-option" data-feeling="Celebrating">
-                                    ðŸŽ‰ Celebrating
+                                    &#x1F389; Celebrating
                                 </button>
 
                             </div>
@@ -583,9 +589,20 @@
     <script src="js/saved.js"></script>
     <script src="js/app.js"></script>
 
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/sw.js")
+                    .then(registration => {
+                        console.log("TransL service worker registered:", registration.scope);
+                    })
+                    .catch(error => {
+                        console.error("TransL service worker registration failed:", error);
+                    });
+            });
+        }
+    </script>
+
 </body>
 
 </html>
-
-
-

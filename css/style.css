@@ -1433,6 +1433,134 @@ a {
 /* ==========================================
    POST LIKE / COMMENT COUNTS
 ========================================== */
+.post-likes-panel {
+    margin-top: 12px;
+    padding: 12px;
+    border: 1px solid #ddd6f3;
+    border-radius: 10px;
+    background: #f5f1ff;
+    color: #1c1e21;
+}
+
+.post-likes-panel[hidden] {
+    display: none;
+}
+
+.post-likes-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.post-likes-header strong {
+    color: #1c1e21;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.close-post-likes {
+    border: 0;
+    border-radius: 14px;
+    padding: 5px 10px;
+    background: #e4e6eb;
+    color: #1c1e21;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.close-post-likes:hover {
+    filter: brightness(0.95);
+}
+
+.post-likes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.post-like-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.post-like-user-avatar {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #ddd6f3;
+    color: #5b4b8a;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.post-like-user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-like-user-details {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.post-like-user-details strong {
+    color: #1c1e21;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.post-like-user-details span {
+    color: #65676b;
+    font-size: 12px;
+}
+
+.post-likes-empty {
+    padding: 10px;
+    color: #65676b;
+    font-size: 13px;
+    text-align: center;
+}
+
+.post-like-count,
+.post-comment-count {
+    appearance: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.post-like-count:hover,
+.post-comment-count:hover {
+    text-decoration: underline;
+}
+
+.post-like-count:focus-visible,
+.post-comment-count:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 3px;
+}
+
 
 .feed-post-stats {
     display: flex;
@@ -12112,5 +12240,894 @@ html:not([data-theme="light"]) .transl-settings-detail label {
 html[data-theme="dark"] .transl-settings-detail label strong,
 html:not([data-theme="light"]) .transl-settings-detail label strong {
     color: #ffffff !important;
+}
+
+
+/* ==========================================
+   TRANSL HOME COMMENTS
+   LIGHT / DARK / SYSTEM APPEARANCE
+========================================== */
+
+/* ---------- LIGHT / DEFAULT ---------- */
+
+#social-dashboard .post-comment-panel {
+    background: #f0f2f5 !important;
+    color: #1c1e21 !important;
+    border: 1px solid #d0d3d8 !important;
+}
+
+#social-dashboard .post-comment {
+    background: #ffffff !important;
+    color: #1c1e21 !important;
+    border: 1px solid #e1e4e8 !important;
+}
+
+#social-dashboard .post-comment strong,
+#social-dashboard .post-comment-body,
+#social-dashboard .post-comment-text {
+    color: #1c1e21 !important;
+}
+
+#social-dashboard .post-comment-input {
+    background: #ffffff !important;
+    color: #1c1e21 !important;
+    border: 1px solid #ccd0d5 !important;
+}
+
+#social-dashboard .post-comment-input::placeholder {
+    color: #65676b !important;
+}
+
+#social-dashboard .post-comment-emoji {
+    background: #e4e6eb !important;
+    color: #1c1e21 !important;
+}
+
+#social-dashboard .post-comment-emoji-picker {
+    background: #ffffff !important;
+    border-color: #d0d3d8 !important;
+}
+
+#social-dashboard .post-comment-emoji-option {
+    color: #1c1e21 !important;
+}
+
+#social-dashboard .post-comment-emoji-option:hover {
+    background: #f0f2f5 !important;
+}
+
+
+/* ---------- DARK ---------- */
+
+html[data-theme="dark"] #social-dashboard .post-comment-panel {
+    background: #242526 !important;
+    color: #e4e6eb !important;
+    border-color: #3e4042 !important;
+}
+
+html[data-theme="dark"] #social-dashboard .post-comment {
+    background: #3a3b3c !important;
+    color: #e4e6eb !important;
+    border-color: #4e4f50 !important;
+}
+
+html[data-theme="dark"] #social-dashboard .post-comment strong,
+html[data-theme="dark"] #social-dashboard .post-comment-body,
+html[data-theme="dark"] #social-dashboard .post-comment-text {
+    color: #e4e6eb !important;
+}
+
+html[data-theme="dark"] #social-dashboard .post-comment-input {
+    background: #3a3b3c !important;
+    color: #e4e6eb !important;
+    border-color: #4e4f50 !important;
+}
+
+html[data-theme="dark"] #social-dashboard .post-comment-input::placeholder {
+    color: #b0b3b8 !important;
+}
+
+html[data-theme="dark"] #social-dashboard .post-comment-emoji {
+    background: #4e4f50 !important;
+    color: #e4e6eb !important;
+}
+
+html[data-theme="dark"] #social-dashboard .post-comment-emoji-picker {
+    background: #242526 !important;
+    border-color: #4e4f50 !important;
+}
+
+html[data-theme="dark"] #social-dashboard .post-comment-emoji-option {
+    color: #e4e6eb !important;
+}
+
+html[data-theme="dark"] #social-dashboard .post-comment-emoji-option:hover {
+    background: #3a3b3c !important;
+}
+
+
+/* ---------- SYSTEM APPEARANCE ---------- */
+
+@media (prefers-color-scheme: dark) {
+
+    html:not([data-theme="light"]):not([data-theme="dark"])
+    #social-dashboard .post-comment-panel {
+        background: #242526 !important;
+        color: #e4e6eb !important;
+        border-color: #3e4042 !important;
+    }
+
+    html:not([data-theme="light"]):not([data-theme="dark"])
+    #social-dashboard .post-comment {
+        background: #3a3b3c !important;
+        color: #e4e6eb !important;
+        border-color: #4e4f50 !important;
+    }
+
+    html:not([data-theme="light"]):not([data-theme="dark"])
+    #social-dashboard .post-comment strong,
+
+    html:not([data-theme="light"]):not([data-theme="dark"])
+    #social-dashboard .post-comment-body,
+
+    html:not([data-theme="light"]):not([data-theme="dark"])
+    #social-dashboard .post-comment-text {
+        color: #e4e6eb !important;
+    }
+
+    html:not([data-theme="light"]):not([data-theme="dark"])
+    #social-dashboard .post-comment-input {
+        background: #3a3b3c !important;
+        color: #e4e6eb !important;
+        border-color: #4e4f50 !important;
+    }
+
+    html:not([data-theme="light"]):not([data-theme="dark"])
+    #social-dashboard .post-comment-input::placeholder {
+        color: #b0b3b8 !important;
+    }
+
+    html:not([data-theme="light"]):not([data-theme="dark"])
+    #social-dashboard .post-comment-emoji {
+        background: #4e4f50 !important;
+        color: #e4e6eb !important;
+    }
+
+    html:not([data-theme="light"]):not([data-theme="dark"])
+    #social-dashboard .post-comment-emoji-picker {
+        background: #242526 !important;
+        border-color: #4e4f50 !important;
+    }
+
+    html:not([data-theme="light"]):not([data-theme="dark"])
+    #social-dashboard .post-comment-emoji-option:hover {
+        background: #3a3b3c !important;
+    }
+}
+
+
+/* ---------- COMMENT AVATAR / BODY ---------- */
+
+#social-dashboard .post-comment {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 9px !important;
+}
+
+#social-dashboard .post-comment-avatar {
+    flex: 0 0 32px !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #1877f2 !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+}
+
+#social-dashboard .post-comment-body {
+    min-width: 0 !important;
+    flex: 1 !important;
+}
+
+
+html[data-theme="dark"] .post-likes-panel {
+    background: #242526;
+    border-color: #3e4042;
+    color: #e4e6eb;
+}
+
+html[data-theme="dark"] .post-likes-header strong {
+    color: #e4e6eb;
+}
+
+html[data-theme="dark"] .close-post-likes {
+    background: #3a3b3c;
+    color: #e4e6eb;
+}
+
+html[data-theme="dark"] .post-like-user {
+    background: rgba(58, 59, 60, 0.72);
+}
+
+html[data-theme="dark"] .post-like-user-avatar {
+    background: #4e4f50;
+    color: #e4e6eb;
+}
+
+html[data-theme="dark"] .post-like-user-details strong {
+    color: #e4e6eb;
+}
+
+html[data-theme="dark"] .post-like-user-details span,
+html[data-theme="dark"] .post-likes-empty {
+    color: #b0b3b8;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    html:not([data-theme="light"]):not([data-theme="dark"]) .post-likes-panel {
+        background: #242526;
+        border-color: #3e4042;
+        color: #e4e6eb;
+    }
+
+    html:not([data-theme="light"]):not([data-theme="dark"]) .post-likes-header strong {
+        color: #e4e6eb;
+    }
+
+    html:not([data-theme="light"]):not([data-theme="dark"]) .close-post-likes {
+        background: #3a3b3c;
+        color: #e4e6eb;
+    }
+
+    html:not([data-theme="light"]):not([data-theme="dark"]) .post-like-user {
+        background: rgba(58, 59, 60, 0.72);
+    }
+
+    html:not([data-theme="light"]):not([data-theme="dark"]) .post-like-user-avatar {
+        background: #4e4f50;
+        color: #e4e6eb;
+    }
+
+    html:not([data-theme="light"]):not([data-theme="dark"]) .post-like-user-details strong {
+        color: #e4e6eb;
+    }
+
+    html:not([data-theme="light"]):not([data-theme="dark"]) .post-like-user-details span,
+    html:not([data-theme="light"]):not([data-theme="dark"]) .post-likes-empty {
+        color: #b0b3b8;
+    }
+
+}
+/* ==========================================
+   POST SHARE PANEL
+========================================== */
+
+.post-share-panel {
+    margin-top: 12px;
+    padding: 14px;
+    border: 1px solid #ddd6f3;
+    border-radius: 12px;
+    background: #f8f6ff;
+    color: #1c1e21;
+    box-sizing: border-box;
+}
+
+.post-share-panel[hidden] {
+    display: none !important;
+}
+
+.post-share-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.post-share-header strong {
+    color: inherit;
+    font-size: 15px;
+}
+
+.close-post-share,
+.post-share-send {
+    border: 0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+}
+
+.close-post-share {
+    background: #e5e1f2;
+    color: #29243a;
+}
+
+.post-share-search {
+    margin-bottom: 10px;
+}
+
+.post-share-search-input {
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 12px;
+    border: 1px solid #cfc8e8;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #1c1e21;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.post-share-search-input::placeholder {
+    color: #77717f;
+}
+
+.post-share-search-input:focus {
+    border-color: #7c5cff;
+    box-shadow: 0 0 0 2px rgba(124, 92, 255, 0.15);
+}
+
+.post-share-selected {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.post-share-selected:empty {
+    display: none;
+}
+
+.post-share-selected-user {
+    border: 1px solid #cfc8e8;
+    border-radius: 999px;
+    padding: 6px 10px;
+    background: #ebe7fb;
+    color: #342b50;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+}
+
+.post-share-users {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 260px;
+    overflow-y: auto;
+    padding: 2px;
+}
+
+.post-share-user {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px;
+    border: 1px solid #e0dced;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #1c1e21;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+}
+
+.post-share-user:hover {
+    background: #f1edff;
+}
+
+.post-share-user-avatar {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #ddd6f3;
+    color: #40385a;
+    font-weight: 700;
+}
+
+.post-share-user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-share-user-details {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.post-share-user-details strong {
+    color: inherit;
+    font-size: 14px;
+}
+
+.post-share-user-details small {
+    color: #716b7d;
+    font-size: 12px;
+}
+
+.post-share-user-check {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #cfc8e8;
+    border-radius: 50%;
+    color: #ffffff;
+    background: transparent;
+    font-weight: 700;
+}
+
+.post-share-user:has(.post-share-user-check:not(:empty))
+    .post-share-user-check {
+    background: #7c5cff;
+    border-color: #7c5cff;
+}
+
+.post-share-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.post-share-send {
+    min-width: 90px;
+    background: #7c5cff;
+    color: #ffffff;
+}
+
+.post-share-send:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+/* ==========================================
+   POST SHARE PANEL - DARK THEME
+========================================== */
+
+html[data-theme="dark"] .post-share-panel,
+html:not([data-theme="light"]) .post-share-panel {
+    background: #1f1f1f;
+    border-color: #444444;
+    color: #f1f1f1;
+}
+
+html[data-theme="dark"] .close-post-share,
+html:not([data-theme="light"]) .close-post-share {
+    background: #333333;
+    color: #f1f1f1;
+}
+
+html[data-theme="dark"] .post-share-search-input,
+html:not([data-theme="light"]) .post-share-search-input {
+    background: #292929;
+    border-color: #505050;
+    color: #f1f1f1;
+}
+
+html[data-theme="dark"] .post-share-search-input::placeholder,
+html:not([data-theme="light"]) .post-share-search-input::placeholder {
+    color: #aaaaaa;
+}
+
+html[data-theme="dark"] .post-share-selected-user,
+html:not([data-theme="light"]) .post-share-selected-user {
+    background: #363636;
+    border-color: #555555;
+    color: #f1f1f1;
+}
+
+html[data-theme="dark"] .post-share-user,
+html:not([data-theme="light"]) .post-share-user {
+    background: #292929;
+    border-color: #444444;
+    color: #f1f1f1;
+}
+
+html[data-theme="dark"] .post-share-user:hover,
+html:not([data-theme="light"]) .post-share-user:hover {
+    background: #353535;
+}
+
+html[data-theme="dark"] .post-share-user-avatar,
+html:not([data-theme="light"]) .post-share-user-avatar {
+    background: #444444;
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .post-share-user-details small,
+html:not([data-theme="light"]) .post-share-user-details small {
+    color: #b8b8b8;
+}
+
+html[data-theme="dark"] .post-share-user-check,
+html:not([data-theme="light"]) .post-share-user-check {
+    border-color: #666666;
+}
+
+html[data-theme="dark"] .post-share-footer .post-share-send,
+html:not([data-theme="light"]) .post-share-footer .post-share-send {
+    color: #ffffff;
+}
+
+/* ==========================================
+   POST SHARE PANEL - SYSTEM DARK
+========================================== */
+
+@media (prefers-color-scheme: dark) {
+
+    html[data-theme="system"] .post-share-panel {
+        background: #1f1f1f;
+        border-color: #444444;
+        color: #f1f1f1;
+    }
+
+    html[data-theme="system"] .close-post-share {
+        background: #333333;
+        color: #f1f1f1;
+    }
+
+    html[data-theme="system"] .post-share-search-input {
+        background: #292929;
+        border-color: #505050;
+        color: #f1f1f1;
+    }
+
+    html[data-theme="system"] .post-share-search-input::placeholder {
+        color: #aaaaaa;
+    }
+
+    html[data-theme="system"] .post-share-selected-user {
+        background: #363636;
+        border-color: #555555;
+        color: #f1f1f1;
+    }
+
+    html[data-theme="system"] .post-share-user {
+        background: #292929;
+        border-color: #444444;
+        color: #f1f1f1;
+    }
+
+    html[data-theme="system"] .post-share-user:hover {
+        background: #353535;
+    }
+
+    html[data-theme="system"] .post-share-user-avatar {
+        background: #444444;
+        color: #ffffff;
+    }
+
+    html[data-theme="system"] .post-share-user-details small {
+        color: #b8b8b8;
+    }
+
+    html[data-theme="system"] .post-share-user-check {
+        border-color: #666666;
+    }
+
+}
+
+/* ==========================================
+   FINAL HOME POST LIKES / COMMENTS THEME FIX
+========================================== */
+
+/* ---------- LIGHT ---------- */
+
+html[data-theme="light"] .feed-post-stats,
+html[data-theme="light"] .feed-post-stat {
+    color: #475569;
+}
+
+html[data-theme="light"] .post-like-count,
+html[data-theme="light"] .post-comment-count {
+    color: #2563eb;
+}
+
+html[data-theme="light"] .post-comment-panel,
+html[data-theme="light"] .post-likes-panel {
+    background: #ffffff;
+    color: #1f2937;
+    border-color: #d1d5db;
+}
+
+html[data-theme="light"] .post-comment,
+html[data-theme="light"] .post-like-user {
+    background: #f3f4f6;
+    color: #1f2937;
+    border-color: #e5e7eb;
+}
+
+html[data-theme="light"] .post-comment strong,
+html[data-theme="light"] .post-comment-body,
+html[data-theme="light"] .post-comment-text,
+html[data-theme="light"] .post-like-user-details strong {
+    color: #1f2937;
+}
+
+html[data-theme="light"] .post-like-user-details span {
+    color: #64748b;
+}
+
+html[data-theme="light"] .post-comment-input {
+    background: #ffffff;
+    color: #1f2937;
+    border-color: #cbd5e1;
+}
+
+html[data-theme="light"] .post-comment-input::placeholder {
+    color: #64748b;
+}
+
+html[data-theme="light"] .post-comment-emoji,
+html[data-theme="light"] .post-comment-submit,
+html[data-theme="light"] .close-post-likes {
+    background: #e5e7eb;
+    color: #1f2937;
+    border-color: #d1d5db;
+}
+
+html[data-theme="light"] .post-comment-emoji-picker {
+    background: #ffffff;
+    border-color: #d1d5db;
+}
+
+html[data-theme="light"] .post-comment-emoji-option {
+    color: #1f2937;
+}
+
+
+/* ---------- EXPLICIT DARK ---------- */
+
+html[data-theme="dark"] .feed-post-stats,
+html[data-theme="dark"] .feed-post-stat {
+    color: #cbd5e1;
+}
+
+html[data-theme="dark"] .post-like-count,
+html[data-theme="dark"] .post-comment-count {
+    color: #60a5fa;
+}
+
+html[data-theme="dark"] .post-comment-panel,
+html[data-theme="dark"] .post-likes-panel {
+    background: #242526;
+    color: #e4e6eb;
+    border-color: #3e4042;
+}
+
+html[data-theme="dark"] .post-comment,
+html[data-theme="dark"] .post-like-user {
+    background: #3a3b3c;
+    color: #e4e6eb;
+    border-color: #4e4f50;
+}
+
+html[data-theme="dark"] .post-comment strong,
+html[data-theme="dark"] .post-comment-body,
+html[data-theme="dark"] .post-comment-text,
+html[data-theme="dark"] .post-like-user-details strong {
+    color: #e4e6eb;
+}
+
+html[data-theme="dark"] .post-like-user-details span {
+    color: #b0b3b8;
+}
+
+html[data-theme="dark"] .post-comment-input {
+    background: #3a3b3c;
+    color: #e4e6eb;
+    border-color: #4e4f50;
+}
+
+html[data-theme="dark"] .post-comment-input::placeholder {
+    color: #b0b3b8;
+}
+
+html[data-theme="dark"] .post-comment-emoji,
+html[data-theme="dark"] .post-comment-submit,
+html[data-theme="dark"] .close-post-likes {
+    background: #4e4f50;
+    color: #e4e6eb;
+    border-color: #5b5d5f;
+}
+
+html[data-theme="dark"] .post-comment-emoji-picker {
+    background: #242526;
+    border-color: #4e4f50;
+}
+
+html[data-theme="dark"] .post-comment-emoji-option {
+    color: #e4e6eb;
+}
+
+
+/* ---------- SYSTEM LIGHT ---------- */
+
+@media (prefers-color-scheme: light) {
+
+    html[data-theme="system"] .feed-post-stats,
+    html[data-theme="system"] .feed-post-stat {
+        color: #475569;
+    }
+
+    html[data-theme="system"] .post-like-count,
+    html[data-theme="system"] .post-comment-count {
+        color: #2563eb;
+    }
+
+    html[data-theme="system"] .post-comment-panel,
+    html[data-theme="system"] .post-likes-panel {
+        background: #ffffff;
+        color: #1f2937;
+        border-color: #d1d5db;
+    }
+
+    html[data-theme="system"] .post-comment,
+    html[data-theme="system"] .post-like-user {
+        background: #f3f4f6;
+        color: #1f2937;
+        border-color: #e5e7eb;
+    }
+
+    html[data-theme="system"] .post-comment strong,
+    html[data-theme="system"] .post-comment-body,
+    html[data-theme="system"] .post-comment-text,
+    html[data-theme="system"] .post-like-user-details strong {
+        color: #1f2937;
+    }
+
+    html[data-theme="system"] .post-like-user-details span {
+        color: #64748b;
+    }
+
+    html[data-theme="system"] .post-comment-input {
+        background: #ffffff;
+        color: #1f2937;
+        border-color: #cbd5e1;
+    }
+
+    html[data-theme="system"] .post-comment-input::placeholder {
+        color: #64748b;
+    }
+
+    html[data-theme="system"] .post-comment-emoji,
+    html[data-theme="system"] .post-comment-submit,
+    html[data-theme="system"] .close-post-likes {
+        background: #e5e7eb;
+        color: #1f2937;
+        border-color: #d1d5db;
+    }
+
+    html[data-theme="system"] .post-comment-emoji-picker {
+        background: #ffffff;
+        border-color: #d1d5db;
+    }
+
+    html[data-theme="system"] .post-comment-emoji-option {
+        color: #1f2937;
+    }
+}
+
+
+/* ---------- SYSTEM DARK ---------- */
+
+@media (prefers-color-scheme: dark) {
+
+    html[data-theme="system"] .feed-post-stats,
+    html[data-theme="system"] .feed-post-stat {
+        color: #cbd5e1;
+    }
+
+    html[data-theme="system"] .post-like-count,
+    html[data-theme="system"] .post-comment-count {
+        color: #60a5fa;
+    }
+
+    html[data-theme="system"] .post-comment-panel,
+    html[data-theme="system"] .post-likes-panel {
+        background: #242526;
+        color: #e4e6eb;
+        border-color: #3e4042;
+    }
+
+    html[data-theme="system"] .post-comment,
+    html[data-theme="system"] .post-like-user {
+        background: #3a3b3c;
+        color: #e4e6eb;
+        border-color: #4e4f50;
+    }
+
+    html[data-theme="system"] .post-comment strong,
+    html[data-theme="system"] .post-comment-body,
+    html[data-theme="system"] .post-comment-text,
+    html[data-theme="system"] .post-like-user-details strong {
+        color: #e4e6eb;
+    }
+
+    html[data-theme="system"] .post-like-user-details span {
+        color: #b0b3b8;
+    }
+
+    html[data-theme="system"] .post-comment-input {
+        background: #3a3b3c;
+        color: #e4e6eb;
+        border-color: #4e4f50;
+    }
+
+    html[data-theme="system"] .post-comment-input::placeholder {
+        color: #b0b3b8;
+    }
+
+    html[data-theme="system"] .post-comment-emoji,
+    html[data-theme="system"] .post-comment-submit,
+    html[data-theme="system"] .close-post-likes {
+        background: #4e4f50;
+        color: #e4e6eb;
+        border-color: #5b5d5f;
+    }
+
+    html[data-theme="system"] .post-comment-emoji-picker {
+        background: #242526;
+        border-color: #4e4f50;
+    }
+
+    html[data-theme="system"] .post-comment-emoji-option {
+        color: #e4e6eb;
+    }
+}
+
+
+/* ==========================================
+   CLICKABLE LIKES / COMMENTS COUNTS
+========================================== */
+
+#social-dashboard .feed-post-stats {
+    position: relative !important;
+    z-index: 20 !important;
+}
+
+#social-dashboard .feed-post-stat {
+    position: relative;
+    z-index: 21;
+}
+
+#social-dashboard .post-like-count,
+#social-dashboard .post-comment-count {
+    position: relative !important;
+    z-index: 22 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    user-select: none;
+}
+
+#social-dashboard .post-like-count:hover,
+#social-dashboard .post-comment-count:hover {
+    text-decoration: underline;
+}
+
+#social-dashboard .post-like-count:focus-visible,
+#social-dashboard .post-comment-count:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 3px;
 }
 

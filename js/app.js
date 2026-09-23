@@ -827,7 +827,7 @@ function initializeTransLNavigation() {
                                             class="transl-settings-icon"
                                             aria-hidden="true"
                                         >
-                                            ??
+                                            👤
                                         </span>
 
                                         <span class="transl-settings-content">
@@ -847,7 +847,7 @@ function initializeTransLNavigation() {
                                             class="transl-settings-arrow"
                                             aria-hidden="true"
                                         >
-                                            \u203A
+                                            ›
                                         </span>
 
                                     </button>
@@ -886,7 +886,7 @@ function initializeTransLNavigation() {
                                             class="transl-settings-arrow"
                                             aria-hidden="true"
                                         >
-                                            \u203A
+                                            ›
                                         </span>
 
                                     </button>
@@ -924,7 +924,7 @@ function initializeTransLNavigation() {
                                             class="transl-settings-arrow"
                                             aria-hidden="true"
                                         >
-                                            \u203A
+                                            ›
                                         </span>
 
                                     </button>
@@ -962,7 +962,7 @@ function initializeTransLNavigation() {
                                             class="transl-settings-arrow"
                                             aria-hidden="true"
                                         >
-                                            \u203A
+                                            ›
                                         </span>
 
                                     </button>
@@ -999,7 +999,7 @@ function initializeTransLNavigation() {
                                             class="transl-settings-arrow"
                                             aria-hidden="true"
                                         >
-                                            \u203A
+                                            ›
                                         </span>
 
                                     </button>
@@ -1036,7 +1036,7 @@ function initializeTransLNavigation() {
                                             class="transl-settings-arrow"
                                             aria-hidden="true"
                                         >
-                                            \u203A
+                                            ›
                                         </span>
 
                                     </button>
@@ -3630,6 +3630,151 @@ function initializePostComposer() {
 
 
     /* ======================================
+       FEELING SELECTOR
+    ======================================= */
+
+    const feelingButton =
+        document.querySelector(
+            '[data-action="feeling"]'
+        );
+
+    const feelingSelector =
+        document.getElementById(
+            "feeling-selector"
+        );
+
+    const closeFeelingSelector =
+        document.getElementById(
+            "close-feeling-selector"
+        );
+
+    const selectedFeeling =
+        document.getElementById(
+            "selected-feeling"
+        );
+
+    const selectedFeelingText =
+        document.getElementById(
+            "selected-feeling-text"
+        );
+
+    const removeFeelingButton =
+        document.getElementById(
+            "remove-feeling"
+        );
+
+    let selectedFeelingValue = "";
+
+    if (feelingButton && feelingSelector) {
+
+        feelingButton.addEventListener(
+            "click",
+            () => {
+
+                feelingSelector.hidden =
+                    false;
+
+            }
+        );
+
+    }
+
+    if (closeFeelingSelector && feelingSelector) {
+
+        closeFeelingSelector.addEventListener(
+            "click",
+            () => {
+
+                feelingSelector.hidden =
+                    true;
+
+            }
+        );
+
+    }
+
+    const feelingOptions =
+        document.querySelectorAll(
+            ".feeling-option"
+        );
+
+    feelingOptions.forEach(
+        (option) => {
+
+            option.addEventListener(
+                "click",
+                () => {
+
+                    selectedFeelingValue =
+                        option.dataset.feeling || "";
+
+                    if (selectedFeelingText) {
+
+                        selectedFeelingText.textContent =
+                            selectedFeelingValue;
+
+                    }
+
+                    if (selectedFeeling) {
+
+                        selectedFeeling.hidden =
+                            !selectedFeelingValue;
+
+                    }
+
+                    if (feelingSelector) {
+
+                        feelingSelector.hidden =
+                            true;
+
+                    }
+
+                    submitButton.disabled =
+                        textarea.value.trim().length === 0 &&
+                        !selectedPhoto &&
+                        !selectedVideo &&
+                        !selectedFeelingValue;
+
+                }
+            );
+
+        }
+    );
+
+    if (removeFeelingButton) {
+
+        removeFeelingButton.addEventListener(
+            "click",
+            () => {
+
+                selectedFeelingValue =
+                    "";
+
+                if (selectedFeeling) {
+
+                    selectedFeeling.hidden =
+                        true;
+
+                }
+
+                if (selectedFeelingText) {
+
+                    selectedFeelingText.textContent =
+                        "";
+
+                }
+
+                submitButton.disabled =
+                    textarea.value.trim().length === 0 &&
+                    !selectedPhoto &&
+                    !selectedVideo;
+
+            }
+        );
+
+    }
+
+    /* ======================================
        OPEN COMPOSER
     ======================================= */
 
@@ -3679,7 +3824,8 @@ function initializePostComposer() {
             submitButton.disabled =
                 text.length === 0 &&
                 !selectedPhoto &&
-                !selectedVideo;
+                !selectedVideo &&
+                !selectedFeelingValue;
         }
     );
 
@@ -3698,7 +3844,8 @@ function initializePostComposer() {
             if (
                 !text &&
                 !selectedPhoto &&
-                !selectedVideo
+                !selectedVideo &&
+                !selectedFeelingValue
             ) {
                 return;
             }
@@ -3837,6 +3984,7 @@ function initializePostComposer() {
                             body:
                                 JSON.stringify({
                                     content: text,
+                                    feeling: selectedFeelingValue || null,
                                     photo: uploadedPhoto,
                                     video: uploadedVideo
                                 })
@@ -3865,6 +4013,18 @@ function initializePostComposer() {
 
                 selectedPhoto =
                     null;
+                selectedFeelingValue =
+                    "";
+
+                if (selectedFeeling) {
+                    selectedFeeling.hidden =
+                        true;
+                }
+
+                if (selectedFeelingText) {
+                    selectedFeelingText.textContent =
+                        "";
+                }
 
                 photoPreviewImage.src =
                     "";
@@ -4153,6 +4313,30 @@ function createTransLPostElement(post) {
         postText;
 
 
+    /* ======================================
+       POST FEELING
+    ======================================= */
+
+    if (
+        post.feeling &&
+        typeof post.feeling === "string"
+    ) {
+
+        const feelingElement =
+            document.createElement("div");
+
+        feelingElement.className =
+            "feed-post-feeling";
+
+        feelingElement.textContent =
+            `Feeling: ${post.feeling}`;
+
+        content.appendChild(
+            feelingElement
+        );
+
+    }
+
 
     /* ======================================
        POST PHOTO
@@ -4256,7 +4440,7 @@ function createTransLPostElement(post) {
             );
 
     likeStat.innerHTML =
-        `Likes <span class="post-like-count">${likeCount}</span>`;
+        `Likes <button type="button" class="post-like-count" aria-label="View likes">${likeCount}</button>`;
 
     const commentStat =
         document.createElement("span");
@@ -4274,10 +4458,28 @@ function createTransLPostElement(post) {
             );
 
     commentStat.innerHTML =
-        `Comments <span class="post-comment-count">${commentCount}</span>`;
+        `Comments <button type="button" class="post-comment-count" aria-label="View comments">${commentCount}</button>`;
 
     stats.appendChild(likeStat);
     stats.appendChild(commentStat);
+    const likeCountButton =
+        likeStat.querySelector(".post-like-count");
+
+    if (likeCountButton) {
+        likeCountButton.addEventListener("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const postId = article.dataset.postId;
+
+            if (!postId) {
+                return;
+            }
+
+            await showTransLPostLikes(article, postId);
+        });
+    }
+
 
 
     /* ======================================
@@ -4447,6 +4649,23 @@ function initializeTransLPostInteractions() {
         "click",
         async (event) => {
 
+            const countButton = event.target.closest(".post-like-count, .post-comment-count");
+
+            if (countButton) {
+                const article = countButton.closest(".feed-post");
+                if (!article) { return; }
+                const postId = article.dataset.postId;
+                if (!postId) { return; }
+                if (countButton.classList.contains("post-comment-count")) {
+                    toggleTransLCommentPanel(article);
+                    return;
+                }
+                if (countButton.classList.contains("post-like-count")) {
+                    await showTransLPostLikes(article, postId);
+                    return;
+                }
+            }
+
             const button =
                 event.target.closest(
                     ".feed-post-action"
@@ -4612,39 +4831,20 @@ async function handleTransLPostShare(
     button
 ) {
 
-    try {
+    const article =
+        button.closest(".feed-post");
 
-        button.disabled =
-            true;
-
-        const result =
-            await translPostRequest(
-                `/api/posts/${postId}/share`,
-                {
-                    method: "POST"
-                }
-            );
-
-        console.log(
-            "TransL post shared:",
-            result
-        );
-
-    } catch (error) {
-
-        console.error(
-            "TransL: Unable to share post.",
-            error
-        );
-
-    } finally {
-
-        button.disabled =
-            false;
-
+    if (!article || !postId) {
+        return;
     }
 
+    toggleTransLSharePanel(
+        article,
+        postId
+    );
+
 }
+
 
 /* ==========================================
    FAVORITE POST
@@ -4845,7 +5045,7 @@ function handleTransLPostDownload(
    COMMENT PANEL
 ========================================== */
 
-function toggleTransLCommentPanel(
+async function toggleTransLCommentPanel(
     article
 ) {
 
@@ -4860,6 +5060,11 @@ function toggleTransLCommentPanel(
             !commentPanel.hidden;
 
         if (!commentPanel.hidden) {
+
+            await loadTransLPostComments(
+                article,
+                commentPanel
+            );
 
             const input =
                 commentPanel.querySelector(
@@ -4885,6 +5090,11 @@ function toggleTransLCommentPanel(
         commentPanel
     );
 
+    await loadTransLPostComments(
+        article,
+        commentPanel
+    );
+
     const input =
         commentPanel.querySelector(
             ".post-comment-input"
@@ -4892,6 +5102,90 @@ function toggleTransLCommentPanel(
 
     if (input) {
         input.focus();
+    }
+
+}
+
+
+/* ==========================================
+   LOAD POST COMMENTS
+========================================== */
+
+async function loadTransLPostComments(
+    article,
+    commentPanel
+) {
+
+    const postId =
+        article.dataset.postId;
+
+    if (!postId || !commentPanel) {
+        return;
+    }
+
+    const commentsList =
+        commentPanel.querySelector(
+            ".post-comments-list"
+        );
+
+    if (!commentsList) {
+        return;
+    }
+
+    commentsList.innerHTML =
+        "<div class=\"post-comments-loading\">Loading comments...</div>";
+
+    try {
+
+        const result =
+            await translPostRequest(
+                `/api/posts/${postId}/comments`,
+                {
+                    method: "GET"
+                }
+            );
+
+        commentsList.innerHTML = "";
+
+        const comments =
+            Array.isArray(result.comments)
+                ? result.comments
+                : [];
+
+        updateTransLCommentCount(
+            article,
+            result.commentCount
+        );
+
+        if (!comments.length) {
+
+            commentsList.innerHTML =
+                "<div class=\"post-comments-empty\">No comments yet.</div>";
+
+            return;
+        }
+
+        comments.forEach(
+            (comment) => {
+
+                appendTransLComment(
+                    commentsList,
+                    comment
+                );
+
+            }
+        );
+
+    } catch (error) {
+
+        console.error(
+            "TransL: Unable to load post comments.",
+            error
+        );
+
+        commentsList.innerHTML =
+            "<div class=\"post-comments-error\">Unable to load comments.</div>";
+
     }
 
 }
@@ -5168,6 +5462,12 @@ function createTransLCommentPanel(
 
                 commentEmojiPicker.hidden =
                     true;
+
+                const commentPanel = article.querySelector(".post-comment-panel");
+
+                if (commentPanel) {
+                    commentPanel.hidden = true;
+                }
 
             } catch (error) {
 
@@ -5482,3 +5782,546 @@ document.addEventListener(
 
     }
 );
+
+
+/* ==========================================
+   POST LIKES PANEL
+========================================== */
+
+async function showTransLPostLikes(article, postId) {
+
+    let likesPanel = article.querySelector(".post-likes-panel");
+
+    if (likesPanel) {
+        likesPanel.hidden = !likesPanel.hidden;
+        return;
+    }
+
+    likesPanel = document.createElement("div");
+    likesPanel.className = "post-likes-panel";
+
+    likesPanel.innerHTML = `
+        <div class="post-likes-header">
+            <strong>Liked by</strong>
+            <button type="button" class="close-post-likes">Close</button>
+        </div>
+        <div class="post-likes-list">Loading likes...</div>
+    `;
+
+    article.appendChild(likesPanel);
+
+    const closeButton =
+        likesPanel.querySelector(".close-post-likes");
+
+    closeButton.addEventListener("click", () => {
+        likesPanel.hidden = true;
+    });
+
+    const likesList =
+        likesPanel.querySelector(".post-likes-list");
+
+    try {
+
+        const result =
+            await translPostRequest(
+                `/api/posts/${postId}/likes`,
+                {
+                    method: "GET"
+                }
+            );
+
+        const likes =
+            Array.isArray(result.likes)
+                ? result.likes
+                : [];
+
+        likesList.innerHTML = "";
+
+        if (!likes.length) {
+
+            const empty =
+                document.createElement("div");
+
+            empty.className =
+                "post-likes-empty";
+
+            empty.textContent =
+                "No likes yet.";
+
+            likesList.appendChild(empty);
+
+            return;
+        }
+
+        likes.forEach((user) => {
+
+            const row =
+                document.createElement("div");
+
+            row.className =
+                "post-like-user";
+
+            const avatar =
+                document.createElement("div");
+
+            avatar.className =
+                "post-like-user-avatar";
+
+            if (user.avatar) {
+
+                const image =
+                    document.createElement("img");
+
+                image.src = user.avatar;
+
+                image.alt =
+                    user.name || "User";
+
+                avatar.appendChild(image);
+
+            } else {
+
+                avatar.textContent =
+                    (user.name || "U")
+                        .charAt(0)
+                        .toUpperCase();
+
+            }
+
+            const details =
+                document.createElement("div");
+
+            details.className =
+                "post-like-user-details";
+
+            const name =
+                document.createElement("strong");
+
+            name.textContent =
+                user.name || "User";
+
+            details.appendChild(name);
+
+            if (user.username) {
+
+
+                const username =
+                    document.createElement("span");
+
+                username.textContent =
+                    `@${user.username}`;
+
+                details.appendChild(username);
+            }
+
+            row.appendChild(avatar);
+            row.appendChild(details);
+
+            likesList.appendChild(row);
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "TransL: Unable to load post likes.",
+            error
+        );
+
+        likesList.textContent =
+            "Unable to load likes.";
+
+    }
+
+}
+
+/* ==========================================
+   POST SHARE PANEL
+========================================== */
+
+async function toggleTransLSharePanel(article, postId) {
+
+    let sharePanel =
+        article.querySelector(".post-share-panel");
+
+    if (sharePanel) {
+        sharePanel.hidden =
+            !sharePanel.hidden;
+        return;
+    }
+
+    sharePanel =
+        document.createElement("div");
+
+    sharePanel.className =
+        "post-share-panel";
+
+    sharePanel.innerHTML = `
+        <div class="post-share-header">
+            <strong>Share post</strong>
+            <button
+                type="button"
+                class="close-post-share"
+            >Close</button>
+        </div>
+
+        <div class="post-share-search">
+            <input
+                type="search"
+                class="post-share-search-input"
+                placeholder="Search users..."
+                autocomplete="off"
+            >
+        </div>
+
+        <div class="post-share-selected"></div>
+
+        <div class="post-share-users">
+            Search for a user to share this post with.
+        </div>
+
+        <div class="post-share-footer">
+            <button
+                type="button"
+                class="post-share-send"
+                disabled
+            >Share</button>
+        </div>
+    `;
+
+    article.appendChild(sharePanel);
+
+    const closeButton =
+        sharePanel.querySelector(
+            ".close-post-share"
+        );
+
+    closeButton.addEventListener(
+        "click",
+        () => {
+            sharePanel.hidden = true;
+        }
+    );
+
+    const searchInput =
+        sharePanel.querySelector(
+            ".post-share-search-input"
+        );
+
+    const usersList =
+        sharePanel.querySelector(
+            ".post-share-users"
+        );
+
+    const selectedList =
+        sharePanel.querySelector(
+            ".post-share-selected"
+        );
+
+    const sendButton =
+        sharePanel.querySelector(
+            ".post-share-send"
+        );
+
+    const selectedUsers =
+        new Map();
+
+    function renderSelectedUsers() {
+
+        selectedList.innerHTML = "";
+
+        selectedUsers.forEach(
+            (user) => {
+
+                const chip =
+                    document.createElement(
+                        "button"
+                    );
+
+                chip.type = "button";
+
+                chip.className =
+                    "post-share-selected-user";
+
+                chip.textContent =
+                    user.name ||
+                    user.username ||
+                    "User";
+
+                chip.title =
+                    "Remove " +
+                    (user.name || "User");
+
+                chip.addEventListener(
+                    "click",
+                    () => {
+
+                        selectedUsers.delete(
+                            String(user._id)
+                        );
+
+                        renderSelectedUsers();
+                        renderUsers(lastUsers);
+
+                    }
+                );
+
+                selectedList.appendChild(
+                    chip
+                );
+
+            }
+        );
+
+        sendButton.disabled =
+            selectedUsers.size === 0;
+
+    }
+
+    function renderUsers(users = []) {
+
+        usersList.innerHTML = "";
+
+        if (!users.length) {
+
+            usersList.textContent =
+                searchInput.value.trim().length >= 2
+                    ? "No users found."
+                    : "Search for a user to share this post with.";
+
+            return;
+        }
+
+        users.forEach(
+            (user) => {
+
+                const row =
+                    document.createElement(
+                        "button"
+                    );
+
+                row.type = "button";
+
+                row.className =
+                    "post-share-user";
+
+                const avatar =
+                    document.createElement(
+                        "span"
+                    );
+
+                avatar.className =
+                    "post-share-user-avatar";
+
+                if (user.avatar) {
+
+                    const image =
+                        document.createElement(
+                            "img"
+                        );
+
+                    image.src =
+                        user.avatar;
+
+                    image.alt =
+                        user.name || "User";
+
+                    avatar.appendChild(
+                        image
+                    );
+
+                } else {
+
+                    avatar.textContent =
+                        (user.name || "U")
+                            .charAt(0)
+                            .toUpperCase();
+
+                }
+
+                const details =
+                    document.createElement(
+                        "span"
+                    );
+
+                details.className =
+                    "post-share-user-details";
+
+                const name =
+                    document.createElement(
+                        "strong"
+                    );
+
+                name.textContent =
+                    user.name || "User";
+
+                details.appendChild(
+                    name
+                );
+
+                if (user.username) {
+
+                    const username =
+                        document.createElement(
+                            "small"
+                        );
+
+                    username.textContent =
+                        "@" + user.username;
+
+                    details.appendChild(
+                        username
+                    );
+
+                }
+
+                const check =
+                    document.createElement(
+                        "span"
+                    );
+
+                check.className =
+                    "post-share-user-check";
+
+                check.textContent =
+                    selectedUsers.has(
+                        String(user._id)
+                    )
+                        ? "\u2713"
+                        : "";
+
+                row.appendChild(avatar);
+                row.appendChild(details);
+                row.appendChild(check);
+
+                row.addEventListener(
+                    "click",
+                    () => {
+
+                        const id =
+                            String(user._id);
+
+                        if (
+                            selectedUsers.has(id)
+                        ) {
+
+                            selectedUsers.delete(
+                                id
+                            );
+
+                        } else {
+
+                            selectedUsers.set(
+                                id,
+                                user
+                            );
+
+                        }
+
+                        renderSelectedUsers();
+                        renderUsers(lastUsers);
+
+                    }
+                );
+
+                usersList.appendChild(
+                    row
+                );
+
+            }
+        );
+
+    }
+
+    let lastUsers = [];
+    let searchTimer = null;
+
+    searchInput.addEventListener(
+        "input",
+        () => {
+
+            clearTimeout(
+                searchTimer
+            );
+
+            const query =
+                searchInput.value.trim();
+
+            if (query.length < 2) {
+
+                lastUsers = [];
+
+                renderUsers();
+
+                return;
+            }
+
+            usersList.textContent =
+                "Searching users...";
+
+            searchTimer =
+                setTimeout(
+                    async () => {
+
+                        try {
+
+                            const result =
+                                await translPostRequest(
+                                    "/api/friends/search?q=" +
+                                    encodeURIComponent(
+                                        query
+                                    ),
+                                    {
+                                        method: "GET"
+                                    }
+                                );
+
+                            lastUsers =
+                                Array.isArray(
+                                    result.users
+                                )
+                                    ? result.users
+                                    : [];
+
+                            renderUsers(
+                                lastUsers
+                            );
+
+                        } catch (error) {
+
+                            console.error(
+                                "TransL: Unable to search share recipients.",
+                                error
+                            );
+
+                            usersList.textContent =
+                                "Unable to search users.";
+
+                        }
+
+                    },
+                    250
+                );
+
+        }
+    );
+
+    sendButton.addEventListener(
+        "click",
+        async () => {
+
+            console.log(
+                "TransL share recipients selected:",
+                Array.from(
+                    selectedUsers.values()
+                ),
+                "postId:",
+                postId
+            );
+
+        }
+    );
+
+    searchInput.focus();
+
+}
