@@ -565,6 +565,19 @@ function initializeTransLNavigation() {
 
 
                 /* ==============================
+                   CLOSE MOBILE MORE MENU
+                ============================== */
+
+                const mobileMoreMenu =
+                    navigationItem.closest(
+                        ".mobile-more-menu"
+                    );
+
+                if (mobileMoreMenu) {
+                    mobileMoreMenu.open = false;
+                }
+
+                /* ==============================
                    ACTIVE NAVIGATION
                 ============================== */
 
