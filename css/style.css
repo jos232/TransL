@@ -736,7 +736,7 @@ a {
     }
 
     #main-navigation {
-        display: none;
+        display: flex;
     }
 
     /* MOBILE MORE MENU */
