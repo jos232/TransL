@@ -720,8 +720,9 @@ a {
 
     .header-container {
         min-height: 58px;
-        padding: 0 8px;
+        padding: 6px 8px;
         gap: 5px;
+        flex-wrap: wrap;
     }
 
     .brand-name {
@@ -737,16 +738,20 @@ a {
 
     #main-navigation {
         display: flex;
-        gap: 1px;
+        order: 10;
+        width: 100%;
+        flex-basis: 100%;
+        justify-content: space-between;
+        gap: 2px;
         margin-left: 0;
-        flex-shrink: 1;
-        min-width: 0;
+        flex-shrink: 0;
     }
 
     .nav-item {
+        flex: 1 1 0;
         min-width: 0;
-        padding: 0 4px;
-        height: 36px;
+        padding: 0 3px;
+        height: 34px;
         font-size: 11px;
         white-space: nowrap;
     }
