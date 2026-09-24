@@ -720,23 +720,35 @@ a {
 
     .header-container {
         min-height: 58px;
-
-        padding: 0 12px;
-
-        gap: 12px;
+        padding: 0 8px;
+        gap: 5px;
     }
 
     .brand-name {
-        font-size: 24px;
+        font-size: 21px;
+        flex-shrink: 0;
     }
 
     .header-search {
-        flex: 1;
+        flex: 1 1 90px;
         width: auto;
+        min-width: 60px;
     }
 
     #main-navigation {
         display: flex;
+        gap: 1px;
+        margin-left: 0;
+        flex-shrink: 1;
+        min-width: 0;
+    }
+
+    .nav-item {
+        min-width: 0;
+        padding: 0 4px;
+        height: 36px;
+        font-size: 11px;
+        white-space: nowrap;
     }
 
     /* MOBILE MORE MENU */
