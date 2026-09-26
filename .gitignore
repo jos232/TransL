@@ -16,3 +16,10 @@ Thumbs.db
 .idea/
 # User uploaded media
 uploads/
+
+# Python virtual environments
+moderation/.venv/
+
+# Python cache files
+__pycache__/
+*.pyc

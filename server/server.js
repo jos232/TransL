@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 /* ==========================================
    TRANSL
@@ -12,6 +12,11 @@ const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const multer = require("multer");
+
+const {
+    moderateImage,
+    moderateVideo
+} = require("../moderation/node_client");
 
 const connectDatabase =
     require("./config/database");
@@ -416,12 +421,12 @@ async function requireAuth(req, res, next) {
 app.post(
     "/api/uploads/photo",
     requireAuth,
-    (req, res) => {
+    async (req, res) => {
 
         photoUpload.single("photo")(
             req,
             res,
-            (error) => {
+            async (error) => {
 
                 if (error) {
 
@@ -466,6 +471,84 @@ app.post(
 
                 }
 
+                console.log(
+                    "TransL moderation check:",
+                    req.file.path
+                );
+
+                let moderationResult;
+
+                try {
+
+                    moderationResult =
+                        await moderateImage(
+                            req.file.path
+                        );
+
+                } catch (moderationError) {
+
+                    console.error(
+                        "TransL image moderation error:",
+                        moderationError
+                    );
+
+                    try {
+                        require("fs").unlinkSync(
+                            req.file.path
+                        );
+                    } catch (cleanupError) {
+                        console.error(
+                            "Moderation cleanup error:",
+                            cleanupError
+                        );
+                    }
+
+                    return res.status(503).json({
+
+                        success: false,
+
+                        message:
+                            "Image moderation service is unavailable."
+
+                    });
+
+                }
+
+                console.log(
+                    "TransL moderation result:",
+                    moderationResult
+                );
+
+                if (
+                    !moderationResult ||
+                    moderationResult.action !== "ALLOW"
+                ) {
+
+                    try {
+                        require("fs").unlinkSync(
+                            req.file.path
+                        );
+                    } catch (cleanupError) {
+                        console.error(
+                            "Moderation rejection cleanup error:",
+                            cleanupError
+                        );
+                    }
+
+                    return res.status(400).json({
+
+                        success: false,
+
+                        message:
+                            "This image cannot be uploaded.",
+
+                        moderation:
+                            moderationResult || null
+
+                    });
+
+                }
+
                 return res.status(201).json({
 
                     success: true,
@@ -492,12 +575,12 @@ app.post(
 app.post(
     "/api/uploads/video",
     requireAuth,
-    (req, res) => {
+    async (req, res) => {
 
         videoUpload.single("video")(
             req,
             res,
-            (error) => {
+            async (error) => {
 
                 if (error) {
 
@@ -537,6 +620,84 @@ app.post(
 
                         message:
                             "Please select a video."
+
+                    });
+
+                }
+
+                console.log(
+                    "TransL video moderation check:",
+                    req.file.path
+                );
+
+                let moderationResult;
+
+                try {
+
+                    moderationResult =
+                        await moderateVideo(
+                            req.file.path
+                        );
+
+                } catch (moderationError) {
+
+                    console.error(
+                        "TransL video moderation error:",
+                        moderationError
+                    );
+
+                    try {
+                        require("fs").unlinkSync(
+                            req.file.path
+                        );
+                    } catch (cleanupError) {
+                        console.error(
+                            "Video moderation cleanup error:",
+                            cleanupError
+                        );
+                    }
+
+                    return res.status(503).json({
+
+                        success: false,
+
+                        message:
+                            "Video moderation service is unavailable."
+
+                    });
+
+                }
+
+                console.log(
+                    "TransL video moderation result:",
+                    moderationResult
+                );
+
+                if (
+                    !moderationResult ||
+                    moderationResult.action !== "ALLOW"
+                ) {
+
+                    try {
+                        require("fs").unlinkSync(
+                            req.file.path
+                        );
+                    } catch (cleanupError) {
+                        console.error(
+                            "Video moderation rejection cleanup error:",
+                            cleanupError
+                        );
+                    }
+
+                    return res.status(400).json({
+
+                        success: false,
+
+                        message:
+                            "This video cannot be uploaded.",
+
+                        moderation:
+                            moderationResult || null
 
                     });
 
