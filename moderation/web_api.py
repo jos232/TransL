@@ -1,4 +1,4 @@
-"""
+﻿"""
 TransL Moderation HTTP API
 
 Laboratory service only.
@@ -181,8 +181,8 @@ def start_server():
 
     uvicorn.run(
         app,
-        host="127.0.0.1",
-        port=8001,
+        host="0.0.0.0",
+        port=int(__import__("os").environ.get("PORT", "8001")),
         reload=False,
     )
 
