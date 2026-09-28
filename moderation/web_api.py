@@ -1,4 +1,4 @@
-﻿"""
+"""
 TransL Moderation HTTP API
 
 Laboratory service only.
@@ -164,6 +164,14 @@ async def moderate_video(file: UploadFile = File(...)):
         }
 
     except Exception as error:
+
+        import traceback
+
+        print("=== TRANSL VIDEO MODERATION ERROR ===", flush=True)
+        print(f"Exception type: {type(error).__name__}", flush=True)
+        print(f"Exception message: {error}", flush=True)
+        traceback.print_exc()
+        print("=== END TRANSL VIDEO MODERATION ERROR ===", flush=True)
 
         raise HTTPException(
             status_code=500,
