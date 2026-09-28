@@ -5,7 +5,6 @@ Laboratory component only.
 Extracts representative frames from a video using FFmpeg.
 """
 
-import os
 import shutil
 import subprocess
 import tempfile
@@ -16,23 +15,6 @@ import imageio_ffmpeg
 
 
 def _find_ffmpeg():
-    """
-    Resolve FFmpeg from an explicit environment variable or from
-    the FFmpeg binary bundled by imageio-ffmpeg.
-    """
-
-    configured_path = os.getenv("TRANSL_FFMPEG_PATH")
-
-    if configured_path:
-        configured = Path(configured_path)
-
-        if configured.is_file():
-            return configured
-
-        raise FileNotFoundError(
-            f"TRANSL_FFMPEG_PATH points to a missing file: {configured}"
-        )
-
     bundled = imageio_ffmpeg.get_ffmpeg_exe()
 
     if bundled:
@@ -44,7 +26,6 @@ def _find_ffmpeg():
     raise FileNotFoundError(
         "FFmpeg binary could not be found."
     )
-
 
 FFMPEG_PATH = _find_ffmpeg()
 
