@@ -11,14 +11,17 @@ import subprocess
 import tempfile
 from pathlib import Path
 
+import cv2
+import imageio_ffmpeg
 
-def _find_binary(env_name, binary_name):
+
+def _find_ffmpeg():
     """
-    Resolve an FFmpeg binary from an explicit environment variable
-    or from the system PATH.
+    Resolve FFmpeg from an explicit environment variable or from
+    the FFmpeg binary bundled by imageio-ffmpeg.
     """
 
-    configured_path = os.getenv(env_name)
+    configured_path = os.getenv("TRANSL_FFMPEG_PATH")
 
     if configured_path:
         configured = Path(configured_path)
@@ -27,65 +30,58 @@ def _find_binary(env_name, binary_name):
             return configured
 
         raise FileNotFoundError(
-            f"{env_name} points to a missing file: {configured}"
+            f"TRANSL_FFMPEG_PATH points to a missing file: {configured}"
         )
 
-    discovered = shutil.which(binary_name)
+    bundled = imageio_ffmpeg.get_ffmpeg_exe()
 
-    if discovered:
-        return Path(discovered)
+    if bundled:
+        bundled_path = Path(bundled)
+
+        if bundled_path.is_file():
+            return bundled_path
 
     raise FileNotFoundError(
-        f"{binary_name} was not found on PATH. "
-        f"Install {binary_name} or set {env_name}."
+        "FFmpeg binary could not be found."
     )
 
 
-FFMPEG_PATH = _find_binary(
-    "TRANSL_FFMPEG_PATH",
-    "ffmpeg",
-)
-
-FFPROBE_PATH = _find_binary(
-    "TRANSL_FFPROBE_PATH",
-    "ffprobe",
-)
+FFMPEG_PATH = _find_ffmpeg()
 
 MAX_VIDEO_DURATION_SECONDS = 120
 MAX_SAMPLED_FRAMES = 120
 
 
 def get_video_duration(video_path):
-    """Return video duration in seconds using FFprobe."""
+    """Return video duration in seconds using OpenCV."""
 
     video_path = Path(video_path)
 
-    command = [
-        str(FFPROBE_PATH),
-        "-v",
-        "error",
-        "-show_entries",
-        "format=duration",
-        "-of",
-        "default=noprint_wrappers=1:nokey=1",
-        str(video_path),
-    ]
-
-    result = subprocess.run(
-        command,
-        check=True,
-        capture_output=True,
-        text=True,
-    )
+    capture = cv2.VideoCapture(str(video_path))
 
     try:
-        duration = float(
-            result.stdout.strip()
+        if not capture.isOpened():
+            raise RuntimeError(
+                "OpenCV could not open the video."
+            )
+
+        fps = float(
+            capture.get(cv2.CAP_PROP_FPS)
         )
-    except ValueError:
-        raise RuntimeError(
-            "FFprobe returned an invalid video duration."
+
+        frame_count = float(
+            capture.get(cv2.CAP_PROP_FRAME_COUNT)
         )
+
+        if fps <= 0 or frame_count <= 0:
+            raise RuntimeError(
+                "OpenCV returned invalid video duration metadata."
+            )
+
+        duration = frame_count / fps
+
+    finally:
+        capture.release()
 
     if duration <= 0:
         raise ValueError(
@@ -124,10 +120,6 @@ def extract_frames(
             f"FFmpeg not found: {FFMPEG_PATH}"
         )
 
-    if not FFPROBE_PATH.is_file():
-        raise FileNotFoundError(
-            f"FFprobe not found: {FFPROBE_PATH}"
-        )
 
     if interval_seconds <= 0:
         raise ValueError(
@@ -238,9 +230,7 @@ if __name__ == "__main__":
     print(
         f"FFmpeg path: {FFMPEG_PATH}"
     )
-    print(
-        f"FFprobe path: {FFPROBE_PATH}"
-    )
+
     print(
         "Maximum video duration: "
         f"{MAX_VIDEO_DURATION_SECONDS} seconds"

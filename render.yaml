@@ -2,5 +2,5 @@ services:
   - type: web
     name: transl-moderation
     runtime: python
-    buildCommand: apt-get update && apt-get install -y ffmpeg && pip install -r moderation/requirements.txt
+    buildCommand: pip install -r moderation/requirements.txt
     startCommand: uvicorn moderation.web_api:app --host 0.0.0.0 --port $PORT
