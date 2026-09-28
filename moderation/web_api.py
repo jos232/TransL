@@ -175,7 +175,7 @@ async def moderate_video(file: UploadFile = File(...)):
 
         raise HTTPException(
             status_code=500,
-            detail=str(error),
+            detail={"error_type": type(error).__name__, "error_message": str(error)},
         )
 
     finally:

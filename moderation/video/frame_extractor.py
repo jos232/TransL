@@ -1,4 +1,4 @@
-﻿"""
+"""
 TransL video frame extractor.
 
 Laboratory component only.
@@ -12,20 +12,44 @@ import tempfile
 from pathlib import Path
 
 
-DEFAULT_FFMPEG_PATH = Path(
-    r"C:\Users\Admin\AppData\Local\Microsoft\WinGet\Packages"
-    r"\Gyan.FFmpeg.Shared_Microsoft.Winget.Source_8wekyb3d8bbwe"
-    r"\ffmpeg-9.0.2-full_build-shared\bin\ffmpeg.exe"
-)
+def _find_binary(env_name, binary_name):
+    """
+    Resolve an FFmpeg binary from an explicit environment variable
+    or from the system PATH.
+    """
 
-FFMPEG_PATH = Path(
-    os.getenv(
-        "TRANSL_FFMPEG_PATH",
-        str(DEFAULT_FFMPEG_PATH),
+    configured_path = os.getenv(env_name)
+
+    if configured_path:
+        configured = Path(configured_path)
+
+        if configured.is_file():
+            return configured
+
+        raise FileNotFoundError(
+            f"{env_name} points to a missing file: {configured}"
+        )
+
+    discovered = shutil.which(binary_name)
+
+    if discovered:
+        return Path(discovered)
+
+    raise FileNotFoundError(
+        f"{binary_name} was not found on PATH. "
+        f"Install {binary_name} or set {env_name}."
     )
+
+
+FFMPEG_PATH = _find_binary(
+    "TRANSL_FFMPEG_PATH",
+    "ffmpeg",
 )
 
-FFPROBE_PATH = FFMPEG_PATH.parent / "ffprobe.exe"
+FFPROBE_PATH = _find_binary(
+    "TRANSL_FFPROBE_PATH",
+    "ffprobe",
+)
 
 MAX_VIDEO_DURATION_SECONDS = 120
 MAX_SAMPLED_FRAMES = 120
