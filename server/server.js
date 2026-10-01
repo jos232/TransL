@@ -12,6 +12,7 @@ const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const multer = require("multer");
+const cors = require("cors");
 
 const {
     moderateImage,
@@ -214,6 +215,8 @@ fileFilter: (
     );
 
 }
+
+app.use(cors());
 
 app.use(
     express.json({
@@ -5743,6 +5746,8 @@ async function startServer() {
 }
 
 startServer();
+
+
 
 
 
