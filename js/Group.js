@@ -1353,7 +1353,7 @@ function renderTransLGroupMessages() {
                         String(senderId) ===
                         String(currentUserId);
 
-                    
+
                     const avatar =
                         renderTransLAvatarHTML(
                             sender.avatar,
@@ -2489,8 +2489,4 @@ window.initializeTransLGroups =
 
 window.openTransLGroup =
     openTransLGroup;
-
-
-
-
 

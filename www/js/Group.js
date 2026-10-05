@@ -484,38 +484,38 @@ async function loadTransLGroups() {
                             <article
                                 class="transl-group-item"
                                 data-group-id="${escapeTransLGroupText(
-                            group._id || ""
-                        )}"
+                                    group._id || ""
+                                )}"
                                 tabindex="0"
                                 role="button"
                                 aria-label="Open ${escapeTransLGroupText(
-                            group.name ||
-                            "group"
-                        )}"
+                                    group.name ||
+                                    "group"
+                                )}"
                             >
 
                                 <div class="transl-group-item-icon">
                                     ${escapeTransLGroupText(
-                            getTransLGroupInitial(
-                                group.name
-                            )
-                        )}
+                                        getTransLGroupInitial(
+                                            group.name
+                                        )
+                                    )}
                                 </div>
 
                                 <div class="transl-group-item-content">
 
                                     <h2>
                                         ${escapeTransLGroupText(
-                            group.name ||
-                            "Unnamed Group"
-                        )}
+                                            group.name ||
+                                            "Unnamed Group"
+                                        )}
                                     </h2>
 
                                     <p>
                                         ${escapeTransLGroupText(
-                            group.description ||
-                            "No description."
-                        )}
+                                            group.description ||
+                                            "No description."
+                                        )}
                                     </p>
 
                                     <div class="transl-group-item-meta">
@@ -527,9 +527,9 @@ async function loadTransLGroups() {
 
                                         <span>
                                             ${escapeTransLGroupText(
-                            group.privacy ||
-                            "public"
-                        )}
+                                                group.privacy ||
+                                                "public"
+                                            )}
                                         </span>
 
                                     </div>
@@ -713,7 +713,7 @@ function renderTransLGroupDetail() {
 
     const creatorName =
         group.creator &&
-            typeof group.creator === "object"
+        typeof group.creator === "object"
             ? (
                 group.creator.name ||
                 group.creator.username ||
@@ -725,8 +725,8 @@ function renderTransLGroupDetail() {
         <section
             class="transl-page-card transl-group-detail-page"
             aria-label="${escapeTransLGroupText(
-        group.name || "Group"
-    )}"
+                group.name || "Group"
+            )}"
         >
 
             <div class="transl-group-detail-top">
@@ -745,26 +745,26 @@ function renderTransLGroupDetail() {
 
                 <div class="transl-group-header-avatar">
                     ${escapeTransLGroupText(
-        getTransLGroupInitial(
-            group.name
-        )
-    )}
+                        getTransLGroupInitial(
+                            group.name
+                        )
+                    )}
                 </div>
 
                 <div class="transl-group-header-info">
 
                     <h1>
                         ${escapeTransLGroupText(
-        group.name ||
-        "Unnamed Group"
-    )}
+                            group.name ||
+                            "Unnamed Group"
+                        )}
                     </h1>
 
                     <p>
                         ${escapeTransLGroupText(
-        group.description ||
-        "No description."
-    )}
+                            group.description ||
+                            "No description."
+                        )}
                     </p>
 
                     <div class="transl-group-header-meta">
@@ -776,16 +776,16 @@ function renderTransLGroupDetail() {
 
                         <span>
                             ${escapeTransLGroupText(
-        group.privacy ||
-        "public"
-    )}
+                                group.privacy ||
+                                "public"
+                            )}
                         </span>
 
                         <span>
                             Created by
                             ${escapeTransLGroupText(
-        creatorName
-    )}
+                                creatorName
+                            )}
                         </span>
 
                     </div>
@@ -914,7 +914,7 @@ function initializeTransLGroupDetailEvents() {
 function renderTransLGroupTab() {
 
     switch (
-    translGroupState.selectedTab
+        translGroupState.selectedTab
     ) {
 
         case "members":
@@ -975,8 +975,8 @@ function renderTransLGroupChat() {
                     hidden
                 >
                     ${getTransLGroupEmojis()
-            .map(
-                (emoji) => `
+                        .map(
+                            (emoji) => `
                                 <button
                                     type="button"
                                     class="transl-group-emoji"
@@ -985,8 +985,8 @@ function renderTransLGroupChat() {
                                     ${emoji}
                                 </button>
                             `
-            )
-            .join("")}
+                        )
+                        .join("")}
                 </div>
 
                 <button
@@ -1381,36 +1381,37 @@ function renderTransLGroupMessages() {
 
                                     <strong>
                                         ${escapeTransLGroupText(
-                        senderName
-                    )}
+                                            senderName
+                                        )}
                                     </strong>
 
-                                    ${username
-                            ? `
+                                    ${
+                                        username
+                                            ? `
                                                 <span>
                                                     ${escapeTransLGroupText(
-                                username
-                            )}
+                                                        username
+                                                    )}
                                                 </span>
                                             `
-                            : ""
-                        }
+                                            : ""
+                                    }
 
                                     <time>
                                         ${escapeTransLGroupText(
-                            createdAt
-                        )}
+                                            createdAt
+                                        )}
                                     </time>
 
                                 </div>
 
                                 <div class="transl-group-message-bubble">
                                     ${escapeTransLGroupText(
-                            message.content
-                        ).replace(
-                            /\n/g,
-                            "<br>"
-                        )}
+                                        message.content
+                                    ).replace(
+                                        /\n/g,
+                                        "<br>"
+                                    )}
                                 </div>
 
                             </div>
@@ -1474,7 +1475,7 @@ function renderTransLGroupMembers() {
 
     const creatorId =
         group.creator &&
-            typeof group.creator === "object"
+        typeof group.creator === "object"
             ? (
                 group.creator._id ||
                 group.creator.id ||
@@ -1488,7 +1489,7 @@ function renderTransLGroupMembers() {
 
                 const adminId =
                     admin &&
-                        typeof admin === "object"
+                    typeof admin === "object"
                         ? (
                             admin._id ||
                             admin.id ||
@@ -1561,8 +1562,9 @@ function renderTransLGroupMembers() {
                     </p>
                 </div>
 
-                ${isAdmin
-            ? `
+                ${
+                    isAdmin
+                        ? `
                             <button
                                 type="button"
                                 id="transl-group-add-member-button"
@@ -1579,13 +1581,14 @@ function renderTransLGroupMembers() {
                                 + Add Members
                             </button>
                         `
-            : ""
-        }
+                        : ""
+                }
 
             </div>
 
-            ${isAdmin
-            ? `
+            ${
+                isAdmin
+                    ? `
                         <div
                             id="transl-group-add-member-panel"
                             hidden
@@ -1658,47 +1661,48 @@ function renderTransLGroupMembers() {
 
                         </div>
                     `
-            : ""
-        }
+                    : ""
+            }
 
-            ${members.length
-            ? `
+            ${
+                members.length
+                    ? `
                         <div class="transl-group-members-list">
 
                             ${members
-                .map(
-                    (member) => {
+                                .map(
+                                    (member) => {
 
-                        const memberObject =
-                            member &&
-                                typeof member === "object"
-                                ? member
-                                : {};
+                                        const memberObject =
+                                            member &&
+                                            typeof member === "object"
+                                                ? member
+                                                : {};
 
-                        const memberId =
-                            memberObject._id ||
-                            memberObject.id ||
-                            String(member || "");
+                                        const memberId =
+                                            memberObject._id ||
+                                            memberObject.id ||
+                                            String(member || "");
 
-                        const name =
-                            memberObject.name ||
-                            memberObject.username ||
-                            "Group member";
+                                        const name =
+                                            memberObject.name ||
+                                            memberObject.username ||
+                                            "Group member";
 
-                        const username =
-                            memberObject.username
-                                ? `@${memberObject.username}`
-                                : "";
+                                        const username =
+                                            memberObject.username
+                                                ? `@${memberObject.username}`
+                                                : "";
 
-                        const isCreator =
-                            String(memberId) ===
-                            String(creatorId);
+                                        const isCreator =
+                                            String(memberId) ===
+                                            String(creatorId);
 
-                        const isCurrentUser =
-                            String(memberId) ===
-                            String(currentUserId);
+                                        const isCurrentUser =
+                                            String(memberId) ===
+                                            String(currentUserId);
 
-                        return `
+                                        return `
                                             <div
                                                 class="transl-group-member-item"
                                                 style="
@@ -1722,12 +1726,12 @@ function renderTransLGroupMembers() {
                                                         class="transl-group-member-avatar"
                                                     >
                                                         ${renderTransLAvatarHTML(
-                            memberObject.avatar,
-                            getTransLGroupInitial(
-                                name
-                            ),
-                            name
-                        )}
+                                                            memberObject.avatar,
+                                                            getTransLGroupInitial(
+                                                                name
+                                                            ),
+                                                            name
+                                                        )}
                                                     </div>
 
                                                     <div
@@ -1736,23 +1740,25 @@ function renderTransLGroupMembers() {
 
                                                         <strong>
                                                             ${escapeTransLGroupText(
-                            name
-                        )}
+                                                                name
+                                                            )}
                                                         </strong>
 
-                                                        ${username
-                                ? `
+                                                        ${
+                                                            username
+                                                                ? `
                                                                     <span>
                                                                         ${escapeTransLGroupText(
-                                    username
-                                )}
+                                                                            username
+                                                                        )}
                                                                     </span>
                                                                 `
-                                : ""
-                            }
+                                                                : ""
+                                                        }
 
-                                                        ${isCreator
-                                ? `
+                                                        ${
+                                                            isCreator
+                                                                ? `
                                                                     <small
                                                                         style="
                                                                             display:block;
@@ -1763,26 +1769,27 @@ function renderTransLGroupMembers() {
                                                                         Group creator
                                                                     </small>
                                                                 `
-                                : ""
-                            }
+                                                                : ""
+                                                        }
 
                                                     </div>
 
                                                 </div>
 
-                                                ${isAdmin &&
-                                !isCreator &&
-                                !isCurrentUser
-                                ? `
+                                                ${
+                                                    isAdmin &&
+                                                    !isCreator &&
+                                                    !isCurrentUser
+                                                        ? `
                                                             <button
                                                                 type="button"
                                                                 class="transl-group-remove-member-button"
                                                                 data-member-id="${escapeTransLGroupText(
-                                    String(memberId)
-                                )}"
+                                                                    String(memberId)
+                                                                )}"
                                                                 data-member-name="${escapeTransLGroupText(
-                                    name
-                                )}"
+                                                                    name
+                                                                )}"
                                                                 style="
                                                                     border:0;
                                                                     border-radius:7px;
@@ -1797,18 +1804,18 @@ function renderTransLGroupMembers() {
                                                                 Remove
                                                             </button>
                                                         `
-                                : ""
-                            }
+                                                        : ""
+                                                }
 
                                             </div>
                                         `;
-                    }
-                )
-                .join("")}
+                                    }
+                                )
+                                .join("")}
 
                         </div>
                     `
-            : `
+                    : `
                         <div class="transl-group-section-empty">
 
                             <div class="transl-group-chat-empty-icon">
@@ -1825,7 +1832,7 @@ function renderTransLGroupMembers() {
 
                         </div>
                     `
-        }
+            }
 
         </div>
     `;
@@ -2197,7 +2204,7 @@ function renderTransLGroupAbout() {
 
     const creator =
         group.creator &&
-            typeof group.creator === "object"
+        typeof group.creator === "object"
             ? group.creator
             : {};
 
@@ -2212,9 +2219,9 @@ function renderTransLGroupAbout() {
 
                 <p>
                     ${escapeTransLGroupText(
-        group.description ||
-        "No description has been added."
-    )}
+                        group.description ||
+                        "No description has been added."
+                    )}
                 </p>
 
             </div>
@@ -2233,9 +2240,9 @@ function renderTransLGroupAbout() {
 
                     <strong>
                         ${escapeTransLGroupText(
-        group.privacy ||
-        "public"
-    )}
+                            group.privacy ||
+                            "public"
+                        )}
                     </strong>
 
                 </div>
@@ -2247,10 +2254,11 @@ function renderTransLGroupAbout() {
                     </span>
 
                     <strong>
-                        ${Array.isArray(group.members)
-            ? group.members.length
-            : 0
-        }
+                        ${
+                            Array.isArray(group.members)
+                                ? group.members.length
+                                : 0
+                        }
                     </strong>
 
                 </div>
@@ -2263,10 +2271,10 @@ function renderTransLGroupAbout() {
 
                     <strong>
                         ${escapeTransLGroupText(
-            creator.name ||
-            creator.username ||
-            "TransL User"
-        )}
+                            creator.name ||
+                            creator.username ||
+                            "TransL User"
+                        )}
                     </strong>
 
                 </div>
@@ -2279,10 +2287,10 @@ function renderTransLGroupAbout() {
 
                     <strong>
                         ${escapeTransLGroupText(
-            formatTransLGroupDate(
-                group.createdAt
-            )
-        )}
+                            formatTransLGroupDate(
+                                group.createdAt
+                            )
+                        )}
                     </strong>
 
                 </div>
@@ -2481,8 +2489,4 @@ window.initializeTransLGroups =
 
 window.openTransLGroup =
     openTransLGroup;
-
-
-
-
 
