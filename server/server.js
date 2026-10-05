@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 /* ==========================================
    TRANSL
@@ -188,6 +188,97 @@ const videoUpload =
 
     });
 
+
+/* ==========================================
+   AVATAR UPLOAD CONFIGURATION
+========================================== */
+
+const avatarUploadsPath =
+    path.join(
+        frontendPath,
+        "uploads",
+        "avatars"
+    );
+
+const avatarStorage =
+    multer.diskStorage({
+
+        destination: (req, file, callback) => {
+
+            const fs =
+                require("fs");
+
+            fs.mkdirSync(
+                avatarUploadsPath,
+                {
+                    recursive:
+                        true
+                }
+            );
+
+            callback(
+                null,
+                avatarUploadsPath
+            );
+
+        },
+
+        filename: (req, file, callback) => {
+
+            const extension =
+                path.extname(
+                    file.originalname
+                ).toLowerCase();
+
+            const uniqueName =
+                crypto.randomBytes(16).toString("hex") +
+                extension;
+
+            callback(
+                null,
+                uniqueName
+            );
+
+        }
+
+    });
+
+const avatarUpload =
+    multer({
+
+        storage:
+            avatarStorage,
+
+        limits: {
+            fileSize:
+                10 * 1024 * 1024
+        },
+
+        fileFilter: (req, file, callback) => {
+
+            if (
+                file.mimetype &&
+                file.mimetype.startsWith("image/")
+            ) {
+
+                callback(
+                    null,
+                    true
+                );
+
+                return;
+
+            }
+
+            callback(
+                new Error(
+                    "Avatar must be an image."
+                )
+            );
+
+        }
+
+    });
 fileFilter: (
     req,
     file,
@@ -416,6 +507,160 @@ async function requireAuth(req, res, next) {
 ========================================== */
 
 
+
+/* ==========================================
+   AVATAR UPLOAD API
+========================================== */
+
+app.post(
+    "/api/uploads/avatar",
+    requireAuth,
+    async (req, res) => {
+
+        avatarUpload.single("avatar")(
+            req,
+            res,
+            async (error) => {
+
+                if (error) {
+
+                    console.error(
+                        "Avatar upload error:",
+                        error
+                    );
+
+                    return res.status(400).json({
+
+                        success: false,
+
+                        message:
+                            error.message ||
+                            "Unable to upload avatar."
+
+                    });
+
+                }
+
+                if (!req.file) {
+
+                    return res.status(400).json({
+
+                        success: false,
+
+                        message:
+                            "Please select an image."
+
+                    });
+
+                }
+
+                console.log(
+                    "TransL avatar moderation check:",
+                    req.file.path
+                );
+
+                let moderationResult;
+
+                try {
+
+                    moderationResult =
+                        await moderateImage(
+                            req.file.path
+                        );
+
+                } catch (moderationError) {
+
+                    console.error(
+                        "TransL avatar moderation error:",
+                        moderationError
+                    );
+
+                    try {
+
+                        require("fs").unlinkSync(
+                            req.file.path
+                        );
+
+                    } catch (cleanupError) {
+
+                        console.error(
+                            "Avatar cleanup error:",
+                            cleanupError
+                        );
+
+                    }
+
+                    return res.status(503).json({
+
+                        success: false,
+
+                        message:
+                            "Image moderation service is unavailable."
+
+                    });
+
+                }
+
+                console.log(
+                    "TransL avatar moderation result:",
+                    moderationResult
+                );
+
+                if (
+                    !moderationResult ||
+                    moderationResult.action !== "ALLOW"
+                ) {
+
+                    try {
+
+                        require("fs").unlinkSync(
+                            req.file.path
+                        );
+
+                    } catch (cleanupError) {
+
+                        console.error(
+                            "Avatar rejection cleanup error:",
+                            cleanupError
+                        );
+
+                    }
+
+                    return res.status(400).json({
+
+                        success: false,
+
+                        message:
+                            "This image cannot be used as a profile picture.",
+
+                        moderation:
+                            moderationResult || null
+
+                    });
+
+                }
+
+                const avatarPath =
+                    "/uploads/avatars/" +
+                    req.file.filename;
+
+                return res.json({
+
+                    success: true,
+
+                    message:
+                        "Avatar uploaded successfully.",
+
+                    avatar:
+                        avatarPath
+
+                });
+
+            }
+        );
+
+    }
+);
 
 /* ==========================================
    PHOTO UPLOAD API
@@ -1391,7 +1636,8 @@ app.put(
                 username,
                 email,
                 bio,
-                favoriteLanguage
+                favoriteLanguage,
+                avatar
             } = req.body || {};
 
 
@@ -1550,9 +1796,18 @@ app.put(
 
             req.user.email =
                 cleanEmail;
-
             req.user.bio =
                 cleanBio;
+
+            if (
+                typeof avatar === "string" &&
+                avatar.trim()
+            ) {
+
+                req.user.avatar =
+                    avatar.trim();
+
+            }
 
 
             /* ==================================
@@ -5746,6 +6001,16 @@ async function startServer() {
 }
 
 startServer();
+
+
+
+
+
+
+
+
+
+
 
 
 

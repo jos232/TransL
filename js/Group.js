@@ -1353,47 +1353,13 @@ function renderTransLGroupMessages() {
                         String(senderId) ===
                         String(currentUserId);
 
-                    const avatarValue =
-                        String(
-                            sender.avatar ||
-                            ""
-                        ).trim();
-
-                    const hasAvatarImage =
-                        /^https?:\/\//i.test(
-                            avatarValue
-                        ) ||
-                        /^data:image\//i.test(
-                            avatarValue
-                        ) ||
-                        /^\/[^/]/.test(
-                            avatarValue
-                        );
-
+                    
                     const avatar =
-                        hasAvatarImage
-                            ? `
-                                <img
-                                    src="${escapeTransLGroupText(
-                                        avatarValue
-                                    )}"
-                                    alt="${escapeTransLGroupText(
-                                        senderName
-                                    )}"
-                                    class="transl-group-message-avatar-image"
-                                >
-                            `
-                            : `
-                                <span
-                                    class="transl-group-message-avatar-fallback"
-                                >
-                                    ${escapeTransLGroupText(
-                                        getTransLGroupInitial(
-                                            senderName
-                                        )
-                                    )}
-                                </span>
-                            `;
+                        renderTransLAvatarHTML(
+                            sender.avatar,
+                            getTransLGroupInitial(senderName),
+                            senderName
+                        );
 
                     const createdAt =
                         formatTransLGroupTime(
@@ -1759,10 +1725,12 @@ function renderTransLGroupMembers() {
                                                     <div
                                                         class="transl-group-member-avatar"
                                                     >
-                                                        ${escapeTransLGroupText(
+                                                        ${renderTransLAvatarHTML(
+                                                            memberObject.avatar,
                                                             getTransLGroupInitial(
                                                                 name
-                                                            )
+                                                            ),
+                                                            name
                                                         )}
                                                     </div>
 
@@ -2521,5 +2489,8 @@ window.initializeTransLGroups =
 
 window.openTransLGroup =
     openTransLGroup;
+
+
+
 
 

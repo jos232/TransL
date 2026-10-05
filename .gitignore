@@ -23,3 +23,11 @@ moderation/.venv/
 # Python cache files
 __pycache__/
 *.pyc
+
+# Android / Gradle generated files
+android/.gradle/
+android/**/build/
+
+# Android local machine configuration
+android/local.properties
+android/keystore.properties
