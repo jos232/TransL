@@ -38,6 +38,12 @@ const GroupMessage =
     require("./models/GroupMessage");
 const Post =
     require("./models/Post");
+
+const SavedPost =
+    require("./models/SavedPost");
+
+const Translation =
+    require("./models/Translation");
 dotenv.config();
 
 const app = express();
@@ -2001,6 +2007,534 @@ app.put(
                     "Unable to change password."
             });
         }
+    }
+);
+
+/* ==========================================
+   DELETE ACCOUNT
+========================================== */
+
+app.delete(
+    "/api/auth/account",
+    requireAuth,
+    async (req, res) => {
+
+        try {
+
+            const {
+                currentPassword,
+                confirmation
+            } = req.body || {};
+
+            if (!currentPassword) {
+
+                return res.status(400).json({
+                    success: false,
+                    message:
+                        "Current password is required."
+                });
+
+            }
+
+            if (
+                String(confirmation || "").trim() !==
+                "DELETE"
+            ) {
+
+                return res.status(400).json({
+                    success: false,
+                    message:
+                        'Type "DELETE" to permanently delete your account.'
+                });
+
+            }
+
+            const passwordMatches =
+                await bcrypt.compare(
+                    String(currentPassword),
+                    req.user.passwordHash
+                );
+
+            if (!passwordMatches) {
+
+                return res.status(401).json({
+                    success: false,
+                    message:
+                        "Current password is incorrect."
+                });
+
+            }
+
+            const userId =
+                req.user._id;
+
+            const fs =
+                require("fs");
+
+            const avatarUploadsPath =
+                path.join(
+                    frontendPath,
+                    "uploads",
+                    "avatars"
+                );
+
+            const photoUploadsPath =
+                path.join(
+                    frontendPath,
+                    "uploads",
+                    "photos"
+                );
+
+            const videoUploadsPath =
+                path.join(
+                    frontendPath,
+                    "uploads",
+                    "videos"
+                );
+
+            const safeDeleteFile =
+                async (filePath) => {
+
+                    try {
+
+                        await fs.promises.unlink(
+                            filePath
+                        );
+
+                    } catch (error) {
+
+                        if (
+                            error.code !==
+                            "ENOENT"
+                        ) {
+
+                            console.error(
+                                "Account deletion file cleanup error:",
+                                error
+                            );
+
+                        }
+
+                    }
+
+                };
+
+            const getOwnedUploadPath =
+                (
+                    storedPath,
+                    uploadDirectory
+                ) => {
+
+                    if (
+                        typeof storedPath !==
+                        "string"
+                    ) {
+                        return null;
+                    }
+
+                    const cleanPath =
+                        storedPath.trim();
+
+                    if (
+                        !cleanPath.startsWith(
+                            "/uploads/"
+                        )
+                    ) {
+                        return null;
+                    }
+
+                    const fileName =
+                        path.basename(
+                            cleanPath
+                        );
+
+                    if (
+                        !fileName ||
+                        fileName === "." ||
+                        fileName === ".."
+                    ) {
+                        return null;
+                    }
+
+                    return path.join(
+                        uploadDirectory,
+                        fileName
+                    );
+
+                };
+
+            /*
+             * Collect the user's posts before deleting them.
+             */
+            const ownedPosts =
+                await Post.find({
+                    author: userId
+                }).select(
+                    "_id photo video"
+                );
+
+            const ownedPostIds =
+                ownedPosts.map(
+                    (post) => post._id
+                );
+
+            /*
+             * Collect groups involving this user.
+             */
+            const userGroups =
+                await Group.find({
+                    $or: [
+                        {
+                            creator: userId
+                        },
+                        {
+                            members: userId
+                        }
+                    ]
+                }).select(
+                    "_id creator admins members"
+                );
+
+            /*
+             * Delete translations belonging to the user's
+             * posts.
+             */
+            if (
+                ownedPostIds.length > 0
+            ) {
+
+                await Translation.deleteMany({
+                    post: {
+                        $in: ownedPostIds
+                    }
+                });
+
+            }
+
+            /*
+             * Delete saved-post records belonging to the user
+             * and saves pointing to posts being deleted.
+             */
+            await SavedPost.deleteMany({
+                $or: [
+                    {
+                        user: userId
+                    },
+                    ...(ownedPostIds.length > 0
+                        ? [
+                            {
+                                post: {
+                                    $in: ownedPostIds
+                                }
+                            }
+                        ]
+                        : [])
+                ]
+            });
+
+            /*
+             * Remove the user's likes, shares, favorites and
+             * comments from posts belonging to other users.
+             */
+            await Post.updateMany(
+                {
+                    author: {
+                        $ne: userId
+                    }
+                },
+                {
+                    $pull: {
+                        likes: userId,
+                        shares: userId,
+                        favorites: userId,
+                        comments: {
+                            author: userId
+                        }
+                    }
+                }
+            );
+
+            /*
+             * Delete the user's own posts.
+             */
+            await Post.deleteMany({
+                author: userId
+            });
+
+            /*
+             * Delete direct messages.
+             */
+            await Message.deleteMany({
+                $or: [
+                    {
+                        sender: userId
+                    },
+                    {
+                        recipient: userId
+                    }
+                ]
+            });
+
+            /*
+             * Delete notifications received by the user
+             * or generated by the user.
+             */
+            await Notification.deleteMany({
+                $or: [
+                    {
+                        recipient: userId
+                    },
+                    {
+                        actor: userId
+                    }
+                ]
+            });
+
+            /*
+             * Remove the user from other users' friendship
+             * and friend-request arrays.
+             */
+            await User.updateMany(
+                {
+                    _id: {
+                        $ne: userId
+                    }
+                },
+                {
+                    $pull: {
+                        friends: userId,
+                        friendRequestsSent: userId,
+                        friendRequestsReceived: userId
+                    }
+                }
+            );
+
+            /*
+             * Delete the user's group messages, including
+             * messages in groups that will remain.
+             */
+            await GroupMessage.deleteMany({
+                sender: userId
+            });
+
+            /*
+             * Clean up groups.
+             *
+             * Creator with remaining members:
+             * transfer creator/admin ownership.
+             *
+             * Creator with no remaining members:
+             * delete the group and its messages.
+             *
+             * Non-creator:
+             * remove the user from members/admins.
+             */
+            for (
+                const group of userGroups
+            ) {
+
+                const isCreator =
+                    String(group.creator) ===
+                    String(userId);
+
+                if (isCreator) {
+
+                    const remainingMembers =
+                        (group.members || [])
+                            .filter(
+                                (memberId) =>
+                                    String(memberId) !==
+                                    String(userId)
+                            );
+
+                    if (
+                        remainingMembers.length ===
+                        0
+                    ) {
+
+                        await GroupMessage.deleteMany({
+                            group: group._id
+                        });
+
+                        await Group.deleteOne({
+                            _id: group._id
+                        });
+
+                        continue;
+
+                    }
+
+                    const newCreator =
+                        remainingMembers[0];
+
+                    const remainingAdmins =
+                        (group.admins || [])
+                            .filter(
+                                (adminId) =>
+                                    String(adminId) !==
+                                    String(userId)
+                            );
+
+                    if (
+                        !remainingAdmins.some(
+                            (adminId) =>
+                                String(adminId) ===
+                                String(newCreator)
+                        )
+                    ) {
+
+                        remainingAdmins.push(
+                            newCreator
+                        );
+
+                    }
+
+                    await Group.updateOne(
+                        {
+                            _id: group._id
+                        },
+                        {
+                            $set: {
+                                creator:
+                                    newCreator,
+                                admins:
+                                    remainingAdmins,
+                                members:
+                                    remainingMembers
+                            }
+                        }
+                    );
+
+                } else {
+
+                    await Group.updateOne(
+                        {
+                            _id: group._id
+                        },
+                        {
+                            $pull: {
+                                members: userId,
+                                admins: userId
+                            }
+                        }
+                    );
+
+                }
+
+            }
+
+            /*
+             * Capture avatar before deleting the user.
+             */
+            const avatarFilePath =
+                getOwnedUploadPath(
+                    req.user.avatar,
+                    avatarUploadsPath
+                );
+
+            /*
+             * Capture post media before deleting the posts.
+             */
+            const postMediaPaths = [];
+
+            for (
+                const post of ownedPosts
+            ) {
+
+                const photoPath =
+                    getOwnedUploadPath(
+                        post.photo,
+                        photoUploadsPath
+                    );
+
+                const videoPath =
+                    getOwnedUploadPath(
+                        post.video,
+                        videoUploadsPath
+                    );
+
+                if (photoPath) {
+
+                    postMediaPaths.push(
+                        photoPath
+                    );
+
+                }
+
+                if (videoPath) {
+
+                    postMediaPaths.push(
+                        videoPath
+                    );
+
+                }
+
+            }
+
+            /*
+             * Delete the User document last.
+             */
+            const deletedUser =
+                await User.deleteOne({
+                    _id: userId
+                });
+
+            if (
+                deletedUser.deletedCount !== 1
+            ) {
+
+                return res.status(500).json({
+                    success: false,
+                    message:
+                        "Unable to delete the account."
+                });
+
+            }
+
+            /*
+             * Clean up owned media after successful
+             * database deletion.
+             */
+            if (avatarFilePath) {
+
+                await safeDeleteFile(
+                    avatarFilePath
+                );
+
+            }
+
+            for (
+                const mediaPath of
+                postMediaPaths
+            ) {
+
+                await safeDeleteFile(
+                    mediaPath
+                );
+
+            }
+
+            return res.json({
+                success: true,
+                message:
+                    "Your account and associated data have been permanently deleted."
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Delete account error:",
+                error
+            );
+
+            return res.status(500).json({
+                success: false,
+                message:
+                    "Unable to delete your account."
+            });
+
+        }
+
     }
 );
 
@@ -6001,6 +6535,8 @@ async function startServer() {
 }
 
 startServer();
+
+
 
 
 

@@ -1665,6 +1665,13 @@ function initializeTransLSettingsInteractions() {
                             >
                                 Manage active sessions
                             </button>
+                            <button
+                                type="button"
+                                class="transl-settings-action"
+                                data-settings-action="delete-account"
+                            >
+                                Delete Account
+                            </button>
 
 
                             <div class="transl-settings-info">
@@ -2573,6 +2580,13 @@ function initializeTransLSettingsInteractions() {
                         >
                             Manage active sessions
                         </button>
+                            <button
+                                type="button"
+                                class="transl-settings-action"
+                                data-settings-action="delete-account"
+                            >
+                                Delete Account
+                            </button>
 
 
                         <div class="transl-settings-info">
@@ -2628,6 +2642,247 @@ function initializeTransLSettingsInteractions() {
 
 
     /* ======================================
+       TRANSL DELETE ACCOUNT HANDLER
+    ======================================= */
+
+    document.addEventListener(
+        "click",
+        (event) => {
+
+            const deleteButton =
+                event.target.closest(
+                    '[data-settings-action="delete-account"]'
+                );
+
+            if (!deleteButton) {
+                return;
+            }
+
+            event.preventDefault();
+
+            showTransLSettingsPanel(
+                "Delete Account",
+                `
+                    <div class="transl-settings-detail">
+
+                        <div class="transl-settings-header">
+
+                            <button
+                                type="button"
+                                class="transl-settings-back"
+                                data-settings-back="privacy">
+                                &#8592;
+                            </button>
+
+                            <h2>Delete Account</h2>
+
+                            <p>
+                                Permanently delete your TransL account and associated data.
+                                This action cannot be undone.
+                            </p>
+
+                        </div>
+
+                        <div class="transl-settings-info">
+                            Your profile, posts, messages, notifications, saved posts,
+                            friendships, group membership, and uploaded account media
+                            will be permanently deleted or removed from other users'
+                            records where applicable.
+                        </div>
+
+                        <form
+                            id="transl-delete-account-form"
+                            autocomplete="off">
+
+                            <div class="transl-settings-field">
+
+                                <label for="transl-delete-current-password">
+                                    Current password
+                                </label>
+
+                                <input
+                                    id="transl-delete-current-password"
+                                    name="currentPassword"
+                                    type="password"
+                                    autocomplete="current-password"
+                                    required>
+
+                            </div>
+
+                            <div class="transl-settings-field">
+
+                                <label for="transl-delete-confirmation">
+                                    Type DELETE to confirm
+                                </label>
+
+                                <input
+                                    id="transl-delete-confirmation"
+                                    name="confirmation"
+                                    type="text"
+                                    autocomplete="off"
+                                    autocapitalize="characters"
+                                    spellcheck="false"
+                                    required>
+
+                            </div>
+
+                            <div
+                                id="transl-delete-account-message"
+                                class="transl-settings-info"
+                                hidden>
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="transl-settings-action"
+                                id="transl-delete-account-submit">
+                                Permanently delete account
+                            </button>
+
+                        </form>
+
+                    </div>
+                `
+            );
+        }
+    );
+
+    /* ======================================
+       TRANSL DELETE ACCOUNT SUBMIT HANDLER
+    ======================================= */
+
+    document.addEventListener(
+        "submit",
+        async (event) => {
+
+            const form =
+                event.target.closest(
+                    "#transl-delete-account-form"
+                );
+
+            if (!form) {
+                return;
+            }
+
+            event.preventDefault();
+
+            const currentPassword =
+                form.elements.currentPassword.value;
+
+            const confirmation =
+                form.elements.confirmation.value.trim();
+
+            const message =
+                document.getElementById(
+                    "transl-delete-account-message"
+                );
+
+            const submitButton =
+                document.getElementById(
+                    "transl-delete-account-submit"
+                );
+
+            if (!currentPassword) {
+
+                message.hidden = false;
+                message.textContent =
+                    "Please enter your current password.";
+
+                return;
+            }
+
+            if (confirmation !== "DELETE") {
+
+                message.hidden = false;
+                message.textContent =
+                    'Please type "DELETE" exactly to confirm account deletion.';
+
+                return;
+            }
+
+            const token =
+                localStorage.getItem(
+                    "translAuthToken"
+                );
+
+            if (!token) {
+
+                message.hidden = false;
+                message.textContent =
+                    "Your session has expired. Please log in again.";
+
+                return;
+            }
+
+            message.hidden = true;
+            message.textContent = "";
+
+            submitButton.disabled = true;
+            submitButton.textContent =
+                "Deleting account...";
+
+            try {
+
+                const response =
+                    await fetch(
+                        translApiUrl(
+                            "/api/auth/account"
+                        ),
+                        {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type":
+                                    "application/json",
+                                "Authorization":
+                                    `Bearer ${token}`
+                            },
+                            body: JSON.stringify({
+                                currentPassword,
+                                confirmation
+                            })
+                        }
+                    );
+
+                const data =
+                    await response.json();
+
+                if (!response.ok || !data.success) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to delete your account."
+                    );
+                }
+
+                localStorage.removeItem(
+                    "translAuthToken"
+                );
+
+                localStorage.removeItem(
+                    "translCurrentUser"
+                );
+
+                window.location.reload();
+
+            } catch (error) {
+
+                console.error(
+                    "TransL account deletion error:",
+                    error
+                );
+
+                message.hidden = false;
+                message.textContent =
+                    error.message ||
+                    "Unable to delete your account.";
+
+                submitButton.disabled = false;
+                submitButton.textContent =
+                    "Permanently delete account";
+            }
+        }
+    );
+
     /* ======================================
        TRANSL CURRENT SESSION HANDLER
     ======================================= */
@@ -6497,3 +6752,8 @@ async function toggleTransLSharePanel(article, postId) {
     searchInput.focus();
 
 }
+
+
+
+
+

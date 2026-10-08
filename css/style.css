@@ -13670,3 +13670,982 @@ html[data-theme="light"] #social-dashboard .post-action-button:hover {
     background: #e4e6eb !important;
 }
 
+
+/* ==========================================
+   TRANSL DELETE ACCOUNT — THEME POLISH
+   Light / Dark / System
+========================================== */
+
+/* ---------- LIGHT THEME ---------- */
+
+html[data-theme="light"] #transl-delete-account-form {
+    color: #1f2937;
+}
+
+html[data-theme="light"] #transl-delete-account-form .transl-settings-field label {
+    color: #1f2937 !important;
+}
+
+html[data-theme="light"] #transl-delete-account-form input {
+    background: #ffffff !important;
+    color: #1f2937 !important;
+    border: 1px solid #d1d5db !important;
+}
+
+html[data-theme="light"] #transl-delete-account-form input::placeholder {
+    color: #6b7280 !important;
+}
+
+html[data-theme="light"] #transl-delete-account-form input:focus {
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.18) !important;
+    outline: none;
+}
+
+html[data-theme="light"] #transl-delete-account-submit {
+    background: #d4af37 !important;
+    color: #111111 !important;
+    border: 1px solid #d4af37 !important;
+}
+
+html[data-theme="light"] #transl-delete-account-submit:hover {
+    background: #e6c65c !important;
+    color: #111111 !important;
+}
+
+html[data-theme="light"] #transl-delete-account-submit:disabled {
+    background: #e5e7eb !important;
+    color: #6b7280 !important;
+    border-color: #d1d5db !important;
+    cursor: wait;
+}
+
+html[data-theme="light"] #transl-delete-account-message {
+    background: #fff7d6 !important;
+    color: #5f4b12 !important;
+    border: 1px solid #e6c65c !important;
+}
+
+html[data-theme="light"] .transl-settings-back[data-settings-back="privacy"] {
+    background: #f0f2f5 !important;
+    color: #1f2937 !important;
+    border: 1px solid #d1d5db !important;
+}
+
+html[data-theme="light"] .transl-settings-back[data-settings-back="privacy"]:hover {
+    background: #e4e6eb !important;
+}
+
+
+/* ---------- DARK + SYSTEM DARK ---------- */
+
+html[data-theme="dark"] #transl-delete-account-form,
+html:not([data-theme="light"]) #transl-delete-account-form {
+    color: #e4e6eb !important;
+}
+
+html[data-theme="dark"] #transl-delete-account-form .transl-settings-field label,
+html:not([data-theme="light"]) #transl-delete-account-form .transl-settings-field label {
+    color: #e4e6eb !important;
+}
+
+html[data-theme="dark"] #transl-delete-account-form input,
+html:not([data-theme="light"]) #transl-delete-account-form input {
+    background: #3a3b3c !important;
+    color: #e4e6eb !important;
+    border: 1px solid #4e4f50 !important;
+}
+
+html[data-theme="dark"] #transl-delete-account-form input::placeholder,
+html:not([data-theme="light"]) #transl-delete-account-form input::placeholder {
+    color: #b0b3b8 !important;
+}
+
+html[data-theme="dark"] #transl-delete-account-form input:focus,
+html:not([data-theme="light"]) #transl-delete-account-form input:focus {
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.22) !important;
+    outline: none;
+}
+
+html[data-theme="dark"] #transl-delete-account-submit,
+html:not([data-theme="light"]) #transl-delete-account-submit {
+    background: #d4af37 !important;
+    color: #111111 !important;
+    border: 1px solid #d4af37 !important;
+}
+
+html[data-theme="dark"] #transl-delete-account-submit:hover,
+html:not([data-theme="light"]) #transl-delete-account-submit:hover {
+    background: #e6c65c !important;
+    color: #111111 !important;
+}
+
+html[data-theme="dark"] #transl-delete-account-submit:disabled,
+html:not([data-theme="light"]) #transl-delete-account-submit:disabled {
+    background: #4a4b4c !important;
+    color: #b0b3b8 !important;
+    border-color: #5a5b5c !important;
+    cursor: wait;
+}
+
+html[data-theme="dark"] #transl-delete-account-message,
+html:not([data-theme="light"]) #transl-delete-account-message {
+    background: #332a18 !important;
+    color: #f4c95d !important;
+    border: 1px solid #8f6b20 !important;
+}
+
+html[data-theme="dark"] .transl-settings-back[data-settings-back="privacy"],
+html:not([data-theme="light"]) .transl-settings-back[data-settings-back="privacy"] {
+    background: #3a3b3c !important;
+    color: #e4e6eb !important;
+    border: 1px solid #4e4f50 !important;
+}
+
+html[data-theme="dark"] .transl-settings-back[data-settings-back="privacy"]:hover,
+html:not([data-theme="light"]) .transl-settings-back[data-settings-back="privacy"]:hover {
+    background: #4a4b4c !important;
+}
+
+
+/* ---------- SYSTEM LIGHT ---------- */
+
+@media (prefers-color-scheme: light) {
+
+    html[data-theme="system"] #transl-delete-account-form {
+        color: #1f2937;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form .transl-settings-field label {
+        color: #1f2937 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form input {
+        background: #ffffff !important;
+        color: #1f2937 !important;
+        border: 1px solid #d1d5db !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form input::placeholder {
+        color: #6b7280 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-submit {
+        background: #d4af37 !important;
+        color: #111111 !important;
+        border-color: #d4af37 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-submit:hover {
+        background: #e6c65c !important;
+        color: #111111 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-message {
+        background: #fff7d6 !important;
+        color: #5f4b12 !important;
+        border-color: #e6c65c !important;
+    }
+
+    html[data-theme="system"] .transl-settings-back[data-settings-back="privacy"] {
+        background: #f0f2f5 !important;
+        color: #1f2937 !important;
+        border-color: #d1d5db !important;
+    }
+
+}
+
+
+/* ---------- SYSTEM DARK ---------- */
+
+@media (prefers-color-scheme: dark) {
+
+    html[data-theme="system"] #transl-delete-account-form {
+        color: #e4e6eb !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form .transl-settings-field label {
+        color: #e4e6eb !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form input {
+        background: #3a3b3c !important;
+        color: #e4e6eb !important;
+        border-color: #4e4f50 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form input::placeholder {
+        color: #b0b3b8 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-submit {
+        background: #d4af37 !important;
+        color: #111111 !important;
+        border-color: #d4af37 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-submit:hover {
+        background: #e6c65c !important;
+        color: #111111 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-message {
+        background: #332a18 !important;
+        color: #f4c95d !important;
+        border-color: #8f6b20 !important;
+    }
+
+    html[data-theme="system"] .transl-settings-back[data-settings-back="privacy"] {
+        background: #3a3b3c !important;
+        color: #e4e6eb !important;
+        border-color: #4e4f50 !important;
+    }
+
+}
+
+
+/* ==========================================
+   TRANSL DELETE ACCOUNT — BUTTON DESIGN
+   Dedicated styling — does not affect
+   other settings action buttons.
+========================================== */
+
+/* ---------- DELETE ACCOUNT ENTRY BUTTONS ---------- */
+
+.transl-settings-detail .transl-settings-action[data-settings-action="delete-account"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 100% !important;
+    min-height: 52px !important;
+    box-sizing: border-box !important;
+
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
+    padding: 13px 18px !important;
+
+    border: 1px solid #d4af37 !important;
+    border-radius: 12px !important;
+
+    background: linear-gradient(
+        135deg,
+        #d4af37,
+        #b99124
+    ) !important;
+
+    color: #111111 !important;
+
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+
+    cursor: pointer !important;
+
+    box-shadow:
+        0 3px 10px rgba(212, 175, 55, 0.20) !important;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.12s ease !important;
+}
+
+.transl-settings-detail .transl-settings-action[data-settings-action="delete-account"]:hover {
+    background: linear-gradient(
+        135deg,
+        #e6c65c,
+        #d4af37
+    ) !important;
+
+    color: #111111 !important;
+
+    border-color: #e6c65c !important;
+
+    box-shadow:
+        0 5px 14px rgba(212, 175, 55, 0.30) !important;
+
+    transform: translateY(-1px) !important;
+}
+
+.transl-settings-detail .transl-settings-action[data-settings-action="delete-account"]:active {
+    transform: translateY(0) scale(0.985) !important;
+}
+
+.transl-settings-detail .transl-settings-action[data-settings-action="delete-account"]:focus-visible {
+    outline: 3px solid rgba(212, 175, 55, 0.35) !important;
+    outline-offset: 3px !important;
+}
+
+
+/* ---------- PERMANENT DELETE BUTTON ---------- */
+
+#transl-delete-account-submit {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 100% !important;
+    min-height: 54px !important;
+    box-sizing: border-box !important;
+
+    margin-top: 16px !important;
+    padding: 14px 20px !important;
+
+    border: 1px solid #b42318 !important;
+    border-radius: 12px !important;
+
+    background: #d92d20 !important;
+    color: #ffffff !important;
+
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+
+    cursor: pointer !important;
+
+    box-shadow:
+        0 3px 10px rgba(217, 45, 32, 0.22) !important;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.12s ease !important;
+}
+
+#transl-delete-account-submit:hover {
+    background: #b42318 !important;
+    color: #ffffff !important;
+    border-color: #981b10 !important;
+
+    box-shadow:
+        0 5px 14px rgba(217, 45, 32, 0.30) !important;
+
+    transform: translateY(-1px) !important;
+}
+
+#transl-delete-account-submit:active {
+    transform: translateY(0) scale(0.985) !important;
+}
+
+#transl-delete-account-submit:focus-visible {
+    outline: 3px solid rgba(217, 45, 32, 0.30) !important;
+    outline-offset: 3px !important;
+}
+
+#transl-delete-account-submit:disabled {
+    background: #8b8f94 !important;
+    color: #ffffff !important;
+    border-color: #777b80 !important;
+    box-shadow: none !important;
+    cursor: wait !important;
+    transform: none !important;
+}
+
+
+/* ---------- DELETE SCREEN BACK BUTTON ---------- */
+
+.transl-settings-detail .transl-settings-back[data-settings-back="privacy"] {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+
+    border-radius: 10px !important;
+
+    font-size: 20px !important;
+    font-weight: 700 !important;
+
+    cursor: pointer !important;
+
+    transition:
+        background 0.18s ease,
+        transform 0.12s ease !important;
+}
+
+.transl-settings-detail .transl-settings-back[data-settings-back="privacy"]:active {
+    transform: scale(0.95) !important;
+}
+
+
+/* ---------- LIGHT THEME ---------- */
+
+html[data-theme="light"] .transl-settings-detail .transl-settings-action[data-settings-action="delete-account"] {
+    background: linear-gradient(
+        135deg,
+        #d4af37,
+        #b99124
+    ) !important;
+
+    color: #111111 !important;
+}
+
+html[data-theme="light"] #transl-delete-account-submit {
+    background: #d92d20 !important;
+    color: #ffffff !important;
+}
+
+
+/* ---------- DARK THEME ---------- */
+
+html[data-theme="dark"] .transl-settings-detail .transl-settings-action[data-settings-action="delete-account"],
+html:not([data-theme="light"]) .transl-settings-detail .transl-settings-action[data-settings-action="delete-account"] {
+    background: linear-gradient(
+        135deg,
+        #d4af37,
+        #a67c18
+    ) !important;
+
+    color: #111111 !important;
+
+    border-color: #d4af37 !important;
+
+    box-shadow:
+        0 3px 12px rgba(212, 175, 55, 0.22) !important;
+}
+
+html[data-theme="dark"] #transl-delete-account-submit,
+html:not([data-theme="light"]) #transl-delete-account-submit {
+    background: #d92d20 !important;
+    color: #ffffff !important;
+
+    border-color: #b42318 !important;
+}
+
+
+/* ---------- SYSTEM LIGHT ---------- */
+
+@media (prefers-color-scheme: light) {
+
+    html[data-theme="system"] .transl-settings-detail .transl-settings-action[data-settings-action="delete-account"] {
+        background: linear-gradient(
+            135deg,
+            #d4af37,
+            #b99124
+        ) !important;
+
+        color: #111111 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-submit {
+        background: #d92d20 !important;
+        color: #ffffff !important;
+    }
+
+}
+
+
+/* ---------- SYSTEM DARK ---------- */
+
+@media (prefers-color-scheme: dark) {
+
+    html[data-theme="system"] .transl-settings-detail .transl-settings-action[data-settings-action="delete-account"] {
+        background: linear-gradient(
+            135deg,
+            #d4af37,
+            #a67c18
+        ) !important;
+
+        color: #111111 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-submit {
+        background: #d92d20 !important;
+        color: #ffffff !important;
+    }
+
+}
+
+
+/* ==========================================
+   TRANSL DELETE ACCOUNT — FORM FIELD DESIGN
+   Current password / Type DELETE
+========================================== */
+
+/* ---------- FIELD CONTAINERS ---------- */
+
+#transl-delete-account-form .transl-settings-field {
+    width: 100% !important;
+    min-height: auto !important;
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+
+    margin: 0 0 16px 0 !important;
+    padding: 14px 16px !important;
+
+    border-radius: 12px !important;
+
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease !important;
+}
+
+
+/* ---------- LABELS ---------- */
+
+#transl-delete-account-form .transl-settings-field label {
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+
+    cursor: text !important;
+}
+
+
+/* ---------- INPUTS ---------- */
+
+#transl-delete-account-form .transl-settings-field input {
+    display: block !important;
+
+    width: 100% !important;
+    min-height: 50px !important;
+
+    box-sizing: border-box !important;
+
+    margin: 0 !important;
+    padding: 12px 14px !important;
+
+    border-radius: 10px !important;
+
+    font-family: inherit !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    line-height: 1.3 !important;
+
+    outline: none !important;
+
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease !important;
+}
+
+
+/* ---------- CURRENT PASSWORD ---------- */
+
+#transl-delete-current-password {
+    letter-spacing: 0.02em !important;
+}
+
+
+/* ---------- TYPE DELETE ---------- */
+
+#transl-delete-confirmation {
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
+    font-weight: 700 !important;
+}
+
+
+/* ---------- LIGHT THEME ---------- */
+
+html[data-theme="light"] #transl-delete-account-form .transl-settings-field {
+    background: #f8f9fa !important;
+    border: 1px solid #d9dee5 !important;
+    color: #1f2937 !important;
+}
+
+html[data-theme="light"] #transl-delete-account-form .transl-settings-field:hover {
+    border-color: #c5cad1 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="light"] #transl-delete-account-form .transl-settings-field label {
+    color: #1f2937 !important;
+}
+
+html[data-theme="light"] #transl-delete-account-form .transl-settings-field input {
+    background: #ffffff !important;
+    color: #1f2937 !important;
+    border: 1px solid #cfd4da !important;
+}
+
+html[data-theme="light"] #transl-delete-account-form .transl-settings-field input::placeholder {
+    color: #6b7280 !important;
+    opacity: 1 !important;
+}
+
+html[data-theme="light"] #transl-delete-account-form .transl-settings-field input:focus {
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.16) !important;
+}
+
+
+/* ---------- DARK THEME ---------- */
+
+html[data-theme="dark"] #transl-delete-account-form .transl-settings-field,
+html:not([data-theme="light"]) #transl-delete-account-form .transl-settings-field {
+    background: #2d2e30 !important;
+    border: 1px solid #45474a !important;
+    color: #e4e6eb !important;
+}
+
+html[data-theme="dark"] #transl-delete-account-form .transl-settings-field:hover,
+html:not([data-theme="light"]) #transl-delete-account-form .transl-settings-field:hover {
+    border-color: #5a5c60 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.20) !important;
+}
+
+html[data-theme="dark"] #transl-delete-account-form .transl-settings-field label,
+html:not([data-theme="light"]) #transl-delete-account-form .transl-settings-field label {
+    color: #e4e6eb !important;
+}
+
+html[data-theme="dark"] #transl-delete-account-form .transl-settings-field input,
+html:not([data-theme="light"]) #transl-delete-account-form .transl-settings-field input {
+    background: #3a3b3c !important;
+    color: #f1f3f5 !important;
+    border: 1px solid #55575a !important;
+}
+
+html[data-theme="dark"] #transl-delete-account-form .transl-settings-field input::placeholder,
+html:not([data-theme="light"]) #transl-delete-account-form .transl-settings-field input::placeholder {
+    color: #aeb3b8 !important;
+    opacity: 1 !important;
+}
+
+html[data-theme="dark"] #transl-delete-account-form .transl-settings-field input:focus,
+html:not([data-theme="light"]) #transl-delete-account-form .transl-settings-field input:focus {
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.22) !important;
+}
+
+
+/* ---------- SYSTEM LIGHT ---------- */
+
+@media (prefers-color-scheme: light) {
+
+    html[data-theme="system"] #transl-delete-account-form .transl-settings-field {
+        background: #f8f9fa !important;
+        border: 1px solid #d9dee5 !important;
+        color: #1f2937 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form .transl-settings-field label {
+        color: #1f2937 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form .transl-settings-field input {
+        background: #ffffff !important;
+        color: #1f2937 !important;
+        border: 1px solid #cfd4da !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form .transl-settings-field input::placeholder {
+        color: #6b7280 !important;
+        opacity: 1 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form .transl-settings-field input:focus {
+        border-color: #d4af37 !important;
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.16) !important;
+    }
+
+}
+
+
+/* ---------- SYSTEM DARK ---------- */
+
+@media (prefers-color-scheme: dark) {
+
+    html[data-theme="system"] #transl-delete-account-form .transl-settings-field {
+        background: #2d2e30 !important;
+        border: 1px solid #45474a !important;
+        color: #e4e6eb !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form .transl-settings-field label {
+        color: #e4e6eb !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form .transl-settings-field input {
+        background: #3a3b3c !important;
+        color: #f1f3f5 !important;
+        border: 1px solid #55575a !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form .transl-settings-field input::placeholder {
+        color: #aeb3b8 !important;
+        opacity: 1 !important;
+    }
+
+    html[data-theme="system"] #transl-delete-account-form .transl-settings-field input:focus {
+        border-color: #d4af37 !important;
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.22) !important;
+    }
+
+}
+
+
+/* ==========================================
+   TRANSL PRIVACY & SECURITY
+   DARK / SYSTEM THEME POLISH
+========================================== */
+
+/* ---------- DARK THEME ---------- */
+
+html[data-theme="dark"] .transl-settings-detail .transl-privacy-choice,
+html[data-theme="dark"] .transl-settings-detail .transl-settings-field,
+html[data-theme="dark"] .transl-settings-detail .transl-settings-toggle,
+html[data-theme="dark"] .transl-settings-detail .transl-settings-action {
+    background: #242526 !important;
+    color: #e4e6eb !important;
+    border-color: #3e4042 !important;
+}
+
+html[data-theme="dark"] .transl-settings-detail .transl-privacy-choice:hover,
+html[data-theme="dark"] .transl-settings-detail .transl-settings-field:hover,
+html[data-theme="dark"] .transl-settings-detail .transl-settings-toggle:hover {
+    background: #2d2e30 !important;
+    border-color: #55575a !important;
+}
+
+html[data-theme="dark"] .transl-settings-detail .transl-privacy-choice button,
+html[data-theme="dark"] .transl-settings-detail .transl-privacy-choice .transl-settings-action {
+    background: #3a3b3c !important;
+    color: #e4e6eb !important;
+    border-color: #55575a !important;
+}
+
+html[data-theme="dark"] .transl-settings-detail .transl-privacy-choice button:hover,
+html[data-theme="dark"] .transl-settings-detail .transl-privacy-choice .transl-settings-action:hover {
+    background: #4a4b4c !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .transl-settings-detail .transl-privacy-choice button[aria-pressed="true"],
+html[data-theme="dark"] .transl-settings-detail .transl-privacy-choice .active,
+html[data-theme="dark"] .transl-settings-detail .transl-privacy-choice .selected {
+    background: #d4af37 !important;
+    color: #111111 !important;
+    border-color: #d4af37 !important;
+}
+
+html[data-theme="dark"] .transl-settings-detail .transl-settings-field span,
+html[data-theme="dark"] .transl-settings-detail .transl-settings-field strong {
+    color: #e4e6eb !important;
+}
+
+html[data-theme="dark"] .transl-settings-detail .transl-settings-field label {
+    color: #e4e6eb !important;
+}
+
+html[data-theme="dark"] .transl-settings-detail .transl-settings-action {
+    background: #242526 !important;
+    color: #e4e6eb !important;
+    border-color: #3e4042 !important;
+}
+
+html[data-theme="dark"] .transl-settings-detail .transl-settings-action:hover {
+    background: #2d2e30 !important;
+    color: #ffffff !important;
+    border-color: #55575a !important;
+}
+
+
+/* ---------- SYSTEM DARK ---------- */
+
+@media (prefers-color-scheme: dark) {
+
+    html[data-theme="system"] .transl-settings-detail .transl-privacy-choice,
+    html[data-theme="system"] .transl-settings-detail .transl-settings-field,
+    html[data-theme="system"] .transl-settings-detail .transl-settings-toggle,
+    html[data-theme="system"] .transl-settings-detail .transl-settings-action {
+        background: #242526 !important;
+        color: #e4e6eb !important;
+        border-color: #3e4042 !important;
+    }
+
+    html[data-theme="system"] .transl-settings-detail .transl-privacy-choice:hover,
+    html[data-theme="system"] .transl-settings-detail .transl-settings-field:hover,
+    html[data-theme="system"] .transl-settings-detail .transl-settings-toggle:hover {
+        background: #2d2e30 !important;
+        border-color: #55575a !important;
+    }
+
+    html[data-theme="system"] .transl-settings-detail .transl-privacy-choice button,
+    html[data-theme="system"] .transl-settings-detail .transl-privacy-choice .transl-settings-action {
+        background: #3a3b3c !important;
+        color: #e4e6eb !important;
+        border-color: #55575a !important;
+    }
+
+    html[data-theme="system"] .transl-settings-detail .transl-privacy-choice button:hover,
+    html[data-theme="system"] .transl-settings-detail .transl-privacy-choice .transl-settings-action:hover {
+        background: #4a4b4c !important;
+        color: #ffffff !important;
+    }
+
+    html[data-theme="system"] .transl-settings-detail .transl-privacy-choice button[aria-pressed="true"],
+    html[data-theme="system"] .transl-settings-detail .transl-privacy-choice .active,
+    html[data-theme="system"] .transl-settings-detail .transl-privacy-choice .selected {
+        background: #d4af37 !important;
+        color: #111111 !important;
+        border-color: #d4af37 !important;
+    }
+
+    html[data-theme="system"] .transl-settings-detail .transl-settings-field span,
+    html[data-theme="system"] .transl-settings-detail .transl-settings-field strong {
+        color: #e4e6eb !important;
+    }
+
+    html[data-theme="system"] .transl-settings-detail .transl-settings-field label {
+        color: #e4e6eb !important;
+    }
+
+    html[data-theme="system"] .transl-settings-detail .transl-settings-action {
+        background: #242526 !important;
+        color: #e4e6eb !important;
+        border-color: #3e4042 !important;
+    }
+
+    html[data-theme="system"] .transl-settings-detail .transl-settings-action:hover {
+        background: #2d2e30 !important;
+        color: #ffffff !important;
+        border-color: #55575a !important;
+    }
+
+}
+
+
+/* ==========================================
+   TRANSL PRIVACY & SECURITY
+   SYSTEM THEME CORRECTION
+
+   TransL represents System by removing
+   the data-theme attribute.
+========================================== */
+
+
+/* ---------- SYSTEM LIGHT ---------- */
+
+@media (prefers-color-scheme: light) {
+
+    html:not([data-theme]) .transl-settings-detail .transl-privacy-choice,
+    html:not([data-theme]) .transl-settings-detail .transl-settings-field,
+    html:not([data-theme]) .transl-settings-detail .transl-settings-toggle {
+        background: #ffffff !important;
+        color: #1c1e21 !important;
+        border-color: #d9dee5 !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-privacy-choice:hover,
+    html:not([data-theme]) .transl-settings-detail .transl-settings-field:hover,
+    html:not([data-theme]) .transl-settings-detail .transl-settings-toggle:hover {
+        background: #f5f6f7 !important;
+        border-color: #c5cad1 !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-privacy-choice button {
+        background: #ffffff !important;
+        color: #1c1e21 !important;
+        border-color: #d1d5db !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-privacy-choice button:hover {
+        background: #f0f2f5 !important;
+        color: #1c1e21 !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-settings-field span {
+        color: #65676b !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-settings-field strong {
+        color: #1c1e21 !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-settings-field label {
+        color: #1c1e21 !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-settings-action {
+        background: #ffffff !important;
+        color: #1c1e21 !important;
+        border-color: #d9dee5 !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-settings-action:hover {
+        background: #f4f5f6 !important;
+        color: #1c1e21 !important;
+        border-color: #c5cad1 !important;
+    }
+
+}
+
+
+/* ---------- SYSTEM DARK ---------- */
+
+@media (prefers-color-scheme: dark) {
+
+    html:not([data-theme]) .transl-settings-detail .transl-privacy-choice,
+    html:not([data-theme]) .transl-settings-detail .transl-settings-field,
+    html:not([data-theme]) .transl-settings-detail .transl-settings-toggle {
+        background: #242526 !important;
+        color: #e4e6eb !important;
+        border-color: #3e4042 !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-privacy-choice:hover,
+    html:not([data-theme]) .transl-settings-detail .transl-settings-field:hover,
+    html:not([data-theme]) .transl-settings-detail .transl-settings-toggle:hover {
+        background: #2d2e30 !important;
+        border-color: #55575a !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-privacy-choice button {
+        background: #3a3b3c !important;
+        color: #e4e6eb !important;
+        border-color: #55575a !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-privacy-choice button:hover {
+        background: #4a4b4c !important;
+        color: #ffffff !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-settings-field span {
+        color: #b0b3b8 !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-settings-field strong {
+        color: #e4e6eb !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-settings-field label {
+        color: #e4e6eb !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-settings-action {
+        background: #242526 !important;
+        color: #e4e6eb !important;
+        border-color: #3e4042 !important;
+    }
+
+    html:not([data-theme]) .transl-settings-detail .transl-settings-action:hover {
+        background: #2d2e30 !important;
+        color: #ffffff !important;
+        border-color: #55575a !important;
+    }
+
+}
+
