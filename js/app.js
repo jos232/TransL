@@ -2882,6 +2882,67 @@ function initializeTransLSettingsInteractions() {
             }
         }
     );
+    /* ======================================
+       TRANSL BLOCKED USERS HANDLER
+    ======================================= */
+
+    document.addEventListener(
+        "click",
+        (event) => {
+
+            const blockedUsersButton =
+                event.target.closest(
+                    '[data-settings-action="blocked-users"]'
+                );
+
+            if (!blockedUsersButton) {
+                return;
+            }
+
+            event.preventDefault();
+
+            showTransLSettingsPanel(
+                "Blocked users",
+                `
+                    <div class="transl-settings-detail">
+
+                        <div class="transl-settings-header">
+
+                            <button
+                                type="button"
+                                class="transl-settings-back"
+                                data-settings-back="privacy">
+                                &#8592;
+                            </button>
+
+                            <h2>Blocked users</h2>
+
+                            <p>
+                                Manage the people you have blocked on TransL.
+                            </p>
+
+                        </div>
+
+                        <div class="transl-settings-info">
+                            Your blocked users list will appear here.
+                        </div>
+
+                        <div class="transl-settings-field">
+
+                            <strong>Blocked users</strong>
+
+                            <span>
+                                No blocked users are currently available to manage.
+                            </span>
+
+                        </div>
+
+                    </div>
+                `
+            );
+        }
+    );
+
 
     /* ======================================
        TRANSL CURRENT SESSION HANDLER
@@ -6752,6 +6813,7 @@ async function toggleTransLSharePanel(article, postId) {
     searchInput.focus();
 
 }
+
 
 
 

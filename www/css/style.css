@@ -14649,3 +14649,180 @@ html[data-theme="dark"] .transl-settings-detail .transl-settings-action:hover {
 
 }
 
+
+/* ==========================================
+   TRANSL CHANGE PASSWORD — DARK AND SYSTEM DARK
+   Keeps Light Theme unchanged.
+========================================== */
+
+/* ---------- EXPLICIT DARK THEME ---------- */
+
+html[data-theme="dark"] #transl-change-password-form input[type="password"] {
+    background: #3a3b3c !important;
+    color: #f1f3f5 !important;
+    border: 1px solid #55575a !important;
+    caret-color: #f1f3f5 !important;
+}
+
+html[data-theme="dark"] #transl-change-password-form input[type="password"]::placeholder {
+    color: #aeb3b8 !important;
+    opacity: 1 !important;
+}
+
+html[data-theme="dark"] #transl-change-password-form input[type="password"]:focus {
+    background: #3a3b3c !important;
+    color: #f1f3f5 !important;
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.22) !important;
+}
+
+
+/* ---------- SYSTEM DARK THEME ---------- */
+
+@media (prefers-color-scheme: dark) {
+
+    html:not([data-theme="light"]) #transl-change-password-form input[type="password"] {
+        background: #3a3b3c !important;
+        color: #f1f3f5 !important;
+        border: 1px solid #55575a !important;
+        caret-color: #f1f3f5 !important;
+    }
+
+    html:not([data-theme="light"]) #transl-change-password-form input[type="password"]::placeholder {
+        color: #aeb3b8 !important;
+        opacity: 1 !important;
+    }
+
+    html:not([data-theme="light"]) #transl-change-password-form input[type="password"]:focus {
+        background: #3a3b3c !important;
+        color: #f1f3f5 !important;
+        border-color: #d4af37 !important;
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.22) !important;
+    }
+
+}
+
+/* ==========================================
+   TRANSL MOBILE MORE MENU — SYSTEM THEME FIX
+   System mode removes data-theme, so use
+   prefers-color-scheme instead.
+========================================== */
+
+/* ---------- SYSTEM LIGHT ---------- */
+
+@media (prefers-color-scheme: light) {
+
+    html:not([data-theme="dark"]) .mobile-more-button {
+        color: #1f2937 !important;
+        background: transparent !important;
+    }
+
+    html:not([data-theme="dark"]) .mobile-more-dropdown {
+        background: #ffffff !important;
+        border-color: #d1d5db !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    html:not([data-theme="dark"]) .mobile-more-item {
+        color: #1f2937 !important;
+        background: transparent !important;
+    }
+
+    html:not([data-theme="dark"]) .mobile-more-item:hover {
+        background: #f3f4f6 !important;
+    }
+
+}
+
+
+/* ---------- SYSTEM DARK ---------- */
+
+@media (prefers-color-scheme: dark) {
+
+    html:not([data-theme="light"]) .mobile-more-button {
+        color: #e4e6eb !important;
+        background: transparent !important;
+    }
+
+    html:not([data-theme="light"]) .mobile-more-dropdown {
+        background: #242526 !important;
+        border-color: #3e4042 !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+    }
+
+    html:not([data-theme="light"]) .mobile-more-item {
+        color: #e4e6eb !important;
+        background: transparent !important;
+    }
+
+    html:not([data-theme="light"]) .mobile-more-item:hover {
+        background: #3a3b3c !important;
+    }
+
+}
+
+/* ==========================================
+   TRANSL SYSTEM DARK — FRIENDS AND GROUPS
+   System mode removes data-theme, so use
+   prefers-color-scheme instead.
+   Light Theme remains unchanged.
+========================================== */
+
+@media (prefers-color-scheme: dark) {
+
+    html:not([data-theme="light"]) .transl-friends-page,
+    html:not([data-theme="light"]) .transl-friends-content,
+    html:not([data-theme="light"]) .transl-friends-header,
+    html:not([data-theme="light"]) .transl-friend-card,
+    html:not([data-theme="light"]) .transl-friend-profile {
+        background: #242526 !important;
+        color: #e4e6eb !important;
+        border-color: #3e4042 !important;
+    }
+
+    html:not([data-theme="light"]) .transl-friends-header h1,
+    html:not([data-theme="light"]) .transl-friends-header strong,
+    html:not([data-theme="light"]) .transl-friend-card h3,
+    html:not([data-theme="light"]) .transl-friend-card strong {
+        color: #e4e6eb !important;
+    }
+
+    html:not([data-theme="light"]) .transl-friends-header p,
+    html:not([data-theme="light"]) .transl-friend-card p,
+    html:not([data-theme="light"]) .transl-friends-status {
+        color: #b0b3b8 !important;
+    }
+
+
+    html:not([data-theme="light"]) .transl-groups-page,
+    html:not([data-theme="light"]) .transl-group-detail-page,
+    html:not([data-theme="light"]) .transl-group-detail,
+    html:not([data-theme="light"]) .transl-group-header,
+    html:not([data-theme="light"]) .transl-group-card,
+    html:not([data-theme="light"]) .transl-group-content {
+        background: #242526 !important;
+        color: #e4e6eb !important;
+        border-color: #3e4042 !important;
+    }
+
+    html:not([data-theme="light"]) .transl-groups-page h1,
+    html:not([data-theme="light"]) .transl-groups-page h2,
+    html:not([data-theme="light"]) .transl-groups-page h3,
+    html:not([data-theme="light"]) .transl-groups-page strong,
+    html:not([data-theme="light"]) .transl-group-detail-header h1,
+    html:not([data-theme="light"]) .transl-group-header-info h1,
+    html:not([data-theme="light"]) .transl-group-card h3,
+    html:not([data-theme="light"]) .transl-group-card strong {
+        color: #e4e6eb !important;
+    }
+
+    html:not([data-theme="light"]) .transl-groups-page > p,
+    html:not([data-theme="light"]) .transl-groups-page small,
+    html:not([data-theme="light"]) .transl-group-detail-header p,
+    html:not([data-theme="light"]) .transl-group-header-info p,
+    html:not([data-theme="light"]) .transl-group-header-meta span {
+        color: #b0b3b8 !important;
+    }
+
+}
+
