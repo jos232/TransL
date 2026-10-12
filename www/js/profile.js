@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 /* ==========================================
    TRANSL
@@ -134,9 +134,9 @@ function renderTransLAvatarHTML(
         <span class="transl-global-avatar-fallback">
             ${typeof escapeTransLProfileHTML === "function"
             ? escapeTransLProfileHTML(
-                safeAvatar || safeInitial
+                safeInitial
             )
-            : safeAvatar || safeInitial
+            : safeInitial
         }
         </span>
     `;
