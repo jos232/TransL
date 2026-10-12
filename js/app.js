@@ -4441,7 +4441,47 @@ function initializePostComposer() {
                     "function"
                 ) {
 
+                console.log(
+                    "TRANSL DEBUG BEFORE LOAD POSTS:",
+                    {
+                        dashboardHidden:
+                            document.getElementById("social-dashboard")?.hidden,
+
+                        dashboardDisplay:
+                            document.getElementById("social-dashboard")
+                                ? getComputedStyle(
+                                    document.getElementById("social-dashboard")
+                                ).display
+                                : "missing",
+
+                        dashboardHTMLLength:
+                            document.getElementById("social-dashboard")?.innerHTML.length,
+
+                        feedHTMLLength:
+                            document.getElementById("feed-container")?.innerHTML.length
+                    }
+                );
                     await loadTransLPosts();
+                console.log(
+                    "TRANSL DEBUG AFTER LOAD POSTS:",
+                    {
+                        dashboardHidden:
+                            document.getElementById("social-dashboard")?.hidden,
+
+                        dashboardDisplay:
+                            document.getElementById("social-dashboard")
+                                ? getComputedStyle(
+                                    document.getElementById("social-dashboard")
+                                ).display
+                                : "missing",
+
+                        dashboardHTMLLength:
+                            document.getElementById("social-dashboard")?.innerHTML.length,
+
+                        feedHTMLLength:
+                            document.getElementById("feed-container")?.innerHTML.length
+                    }
+                );
 
                 }
 
@@ -4579,25 +4619,33 @@ async function loadTransLPosts() {
                     ? result.posts
                     : [];
 
-        postsContainer.innerHTML =
-            "";
+        const fragment = document.createDocumentFragment();
+        let renderedCount = 0;
 
-        posts.forEach((post) => {
+        posts.forEach((post, index) => {
+            try {
+                const postElement = createTransLPostElement(post);
 
-            const postElement =
-                createTransLPostElement(
-                    post
-                );
-
-            if (postElement) {
-
-                postsContainer.appendChild(
-                    postElement
-                );
-
+                if (postElement) {
+                    fragment.appendChild(postElement);
+                    renderedCount++;
+                }
+            } catch (error) {
+                console.error("TRANSL POST RENDER ERROR:", index, post, error);
             }
-
         });
+
+        if (posts.length > 0 && renderedCount === 0) {
+            console.error("TransL: No posts rendered; preserving existing feed.");
+            return;
+        }
+
+        if (posts.length === 0 && postsContainer.children.length > 0) {
+            console.warn("TransL: Empty posts response; preserving existing feed.");
+            return;
+        }
+
+        postsContainer.replaceChildren(fragment);
 
         console.log(
             "TransL posts loaded:",
@@ -6813,6 +6861,14 @@ async function toggleTransLSharePanel(article, postId) {
     searchInput.focus();
 
 }
+
+
+
+
+
+
+
+
 
 
 

@@ -14826,3 +14826,25 @@ html[data-theme="dark"] #transl-change-password-form input[type="password"]:focu
 
 }
 
+
+/* ==========================================
+   TRANSL FEED — SYSTEM LIGHT TEXT
+   System mode has no data-theme attribute.
+   ========================================== */
+
+@media (prefers-color-scheme: light) {
+
+    html:not([data-theme="dark"]) #social-dashboard .feed-post,
+    html:not([data-theme="dark"]) #social-dashboard .feed-post-text,
+    html:not([data-theme="dark"]) #social-dashboard .feed-post-content,
+    html:not([data-theme="dark"]) #social-dashboard .feed-post strong,
+    html:not([data-theme="dark"]) #social-dashboard .feed-post span {
+        color: #1f2937 !important;
+    }
+
+    html:not([data-theme="dark"]) #social-dashboard .feed-post {
+        background: #ffffff !important;
+        border-color: #e4e6eb !important;
+    }
+
+}
